@@ -44,6 +44,7 @@ Schema:
 name:string
 email:string
 password_digest:string
+uid:string (for oauth)
 
 ****
 
