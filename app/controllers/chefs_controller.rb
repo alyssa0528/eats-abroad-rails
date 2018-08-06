@@ -1,4 +1,5 @@
 class ChefsController < ApplicationController
+  before_action :find_chef, only: [:show]
 
   #action for signup form
   def new
@@ -17,9 +18,16 @@ class ChefsController < ApplicationController
 
   end
 
+  def show
+  end
+
   private
 
   def chef_params
     params.require(:chef).permit(:name, :email, :password_digest, :uid, :hometown, :employer)
+  end
+
+  def find_chef
+    @chef = Chef.find(params[:id])
   end
 end
