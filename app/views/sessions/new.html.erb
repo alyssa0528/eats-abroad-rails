@@ -1,11 +1,10 @@
 <h1>Please log in with your account</h1>
-<form method='post'>
-  <p>Email:</p>
-  <input type="text" name="email">
-  <p>Password:</p>
-  <label for="password"></label>
-  <input type="password" name="" value="">
-  <input type="submit" value="Log In">
-</form>
+<%= form_tag signin_path do %>
+  <label>Email:</label>
+  <%= text_field_tag :email %><br>
+  <label>Password:</label>
+  <%= text_field_tag :password %><br>
+  <%= submit_tag "Log In" %>
+<% end %>
 
 <h1>Or log in via Facebook</h1>
