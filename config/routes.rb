@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root 'application#home'
   get '/signin' => 'sessions#new'
+  post '/signin' => 'sessions#create'
   resources :cities, only: [:index, :show]
   resources :restaurants, only: [:index, :show, :new, :create]
   resources :chefs, only: [:index, :new, :create, :show]
