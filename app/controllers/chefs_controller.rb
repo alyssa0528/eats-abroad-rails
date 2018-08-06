@@ -11,9 +11,11 @@ class ChefsController < ApplicationController
     @chef = Chef.new(chef_params)
 
     if @chef
+      #raise params.inspect
+      @chef.save
       redirect_to chef_path(@chef)
     else
-      render :new
+      render :new #have error messages appear
     end
 
   end
@@ -24,7 +26,7 @@ class ChefsController < ApplicationController
   private
 
   def chef_params
-    params.require(:chef).permit(:name, :email, :password_digest, :uid, :hometown, :employer)
+    params.require(:chef).permit(:name, :email, :password, :uid, :hometown, :employer)
   end
 
   def find_chef
