@@ -47,8 +47,9 @@ cuisine:string
 city_id:integer
 
 Paths:
-restaurants/new => chef adds new restaurant to his recommended list, as well as a comment for it here
-restaurants/:id => restaurant's show page
+/restaurants => index of all restaurants
+/restaurants/new => chef adds new restaurant to his recommended list, as well as a comment for it here
+/restaurants/:id => restaurant's show page
 /restaurants/:id/comments => index of comments for a particular restaurant
 
 ****
@@ -67,8 +68,9 @@ password_digest:string
 uid:string (for oauth)
 
 get chefs/new => signup
+post chefs/create => create chef user
 chefs/edit ? => chef can edit their profile
-chefs/:id => chef's profile page showing name, hometown, and restaurant
+chefs/:id => chef's profile page showing name, current city, and restaurant
 chefs/:id/restaurants => shows all restaurants recommended by a particular chef
 
 ****
