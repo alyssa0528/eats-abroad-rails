@@ -3,14 +3,14 @@ City.create(name: "Vancouver") #id 2
 City.create(name: "Boston") #id 3
 City.create(name: "Dublin") #id 4
 
-Chef.create(name: "Rick Bayless", email: "rick@bayless.com", password: "food") #id 1
-Chef.create(name: "Mindy Segal", email: "mindy@segal.com", password: "food") #id 2
-Chef.create(name: "Thomas Haas", email: "thomas@haas.com", password: "food") #id 3
-Chef.create(name: "Alex Chen", email: "alex@chen.com", password: "food") #id 4
-Chef.create(name: "Joanne Chang", email: "joanne@chang.com", password: "food") #id 5
-Chef.create(name: "Cassie Piuma", email: "cassie@piuma.com", password: "food") #id 6
-Chef.create(name: "Kevin Arundel", email: "kevin@arundel.com", password: "food") #id 7
-Chef.create(name: "Sandy Wyer", email: "sandy@wyer.com", password: "food") #id 8
+Chef.create(name: "Rick Bayless", email: "rick@bayless.com", password: "food", hometown: "Chicago", employer: "Topolobampo, Frontera, and XOCO") #id 1
+Chef.create(name: "Mindy Segal", email: "mindy@segal.com", password: "food", hometown: "Chicago", employer: "HotChocolate") #id 2
+Chef.create(name: "Thomas Haas", email: "thomas@haas.com", password: "food", hometown: "Vancouver", employer: "Thomas Haas Chocolates") #id 3
+Chef.create(name: "Alex Chen", email: "alex@chen.com", password: "food", hometown: "Vancouver", employer: "Boulevard Kitchen & Oyster Bar") #id 4
+Chef.create(name: "Joanne Chang", email: "joanne@chang.com", password: "food", hometown: "Boston", employer: "Flour Bakery and Myers + Chang") #id 5
+Chef.create(name: "Cassie Piuma", email: "cassie@piuma.com", password: "food", hometown: "Boston", employer: "Sarma") #id 6
+Chef.create(name: "Kevin Arundel", email: "kevin@arundel.com", password: "food", hometown: "Dublin", employer: "The Chop House") #id 7
+Chef.create(name: "Sandy Wyer", email: "sandy@wyer.com", password: "food", hometown: "Dublin", employer: "Forest Avenue and Forest & Marcy") #id 8
 
 #chicago
 Restaurant.create(name: "HotChocolate", cuisine: "desserts", city_id: 1) #id 1
