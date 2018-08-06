@@ -4,16 +4,22 @@ class SessionsController < ApplicationController
   def new
   end
 
-
+  #post /signin
   def create
-    @user = User.find_by(:email => params[:email])
+    @chef = Chef.find_by(:email => params[:email])
 
-    if @user && @user.authenticate(params:password)
+    if @chef && @chef.authenticate(params[:password])
       session[:email] = params[:email]
       redirect_to root_path
     else
       render :new
-    end 
+    end
+  end
+
+  #post /logout
+  def destroy
+    session.delete :email
+    redirect_to root_path
   end
 
 end
