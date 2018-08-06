@@ -1,0 +1,10 @@
+<h1><%= @restaurant.name %></h1>
+
+<h3>Cuisine: <%= @restaurant.cuisine.capitalize %></h3>
+
+<h3>Recommendations:</h3>
+<ul>
+  <% @restaurant.comments.each do |c| %>
+  <li><%= c.content %> - <%= c.chef.name %></li>
+</ul>
+  <% end %>

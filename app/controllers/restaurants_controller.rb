@@ -1,4 +1,6 @@
 class RestaurantsController < ApplicationController
+
+  #GET /restaurants (account for nested route and plain /restaurants route)
   def index
     if params[:city_id]
       @restaurants = City.find(params[:city_id]).restaurants
@@ -7,6 +9,7 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  #GET /restaurants/:id
   def show
     @restaurant = Restaurant.find(params[:id])
   end

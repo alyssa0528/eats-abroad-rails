@@ -1,5 +1,4 @@
 <h1>Recommended Restaurants</h1>
-<% binding.pry %>
 <ul>
 <% @restaurants.each do |r| %>
   <li><%= link_to r.name, restaurant_path(r) %></li>
