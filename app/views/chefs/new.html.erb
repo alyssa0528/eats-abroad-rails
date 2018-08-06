@@ -1,6 +1,6 @@
 <!-- form to be rendered when chef signs up for new account -->
 <h1>Sign up for a new Eats Abroad account</h1>
-<%= form_for :chef, url: chefs_path, method: :post do |f| %>
+<%= form_for @chef, url: chefs_path, method: :post do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
   <%= f.label :email %>
