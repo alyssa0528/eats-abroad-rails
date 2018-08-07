@@ -3,8 +3,9 @@ Rails.application.routes.draw do
 
   root 'application#home'
   get '/signin' => 'sessions#new'
-  get '/auth/facebook/callback' => 'sessions#create'
   post '/signin' => 'sessions#create'
+  get '/auth/facebook/callback' => 'sessions#create'
+
   delete '/signout' => 'sessions#destroy'
   resources :cities, only: [:index]
   resources :cities, only: [:show] do
