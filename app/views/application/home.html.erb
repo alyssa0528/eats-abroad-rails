@@ -1,7 +1,8 @@
 <h1>Welcome to Eats Abroad!</h1>
 
-<% if session[:user_id] %>
+<% if session[:email] %>
   <h1>Welcome, <%= @chef.name %>!</h1>
+  <p><%= link_to "Log Out", signout_path, method: :delete %></p>
 <% else %>
   <p>Please <%= link_to "sign in", signin_path %> or <%= link_to "create an account", new_chef_path %></p>
 <% end %>

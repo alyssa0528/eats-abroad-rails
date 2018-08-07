@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
 
   #post /logout
   def destroy
-    session.delete :email
+    session.delete(:email)
     redirect_to root_path
   end
 

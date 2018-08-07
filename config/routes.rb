@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/signin' => 'sessions#new'
   get '/auth/facebook/callback' => 'sessions#create'
   post '/signin' => 'sessions#create'
-  post 'signout' => 'sessions#destroy'
+  delete '/signout' => 'sessions#destroy'
   resources :cities, only: [:index]
   resources :cities, only: [:show] do
     resources :restaurants, only: [:index, :show]
