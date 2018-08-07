@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
   def home
-  end 
+    #binding.pry
+    @chef = Chef.find_by(:email => session[:email])
+  end
 end
