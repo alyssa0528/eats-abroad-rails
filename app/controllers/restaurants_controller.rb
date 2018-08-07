@@ -4,6 +4,8 @@ class RestaurantsController < ApplicationController
   def index
     if params[:city_id]
       @restaurants = City.find(params[:city_id]).restaurants
+    elsif params[:chef_id]
+      @restaurants = Chef.find(params[:chef_id]).restaurants
     else
       @restaurants = Restaurant.all
     end
