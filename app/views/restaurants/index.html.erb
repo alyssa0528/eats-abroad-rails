@@ -4,3 +4,8 @@
   <li><%= link_to r.name, restaurant_path(r) %></li>
 <% end %>
 </ul>
+
+
+<% if current_user %>
+  <%= link_to "Recommend a new restaurant", new_chef_restaurant_path %>
+<% end %>
