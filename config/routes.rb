@@ -18,4 +18,8 @@ Rails.application.routes.draw do
   resources :chefs, only: [:show] do
     resources :restaurants, only: [:index, :show, :new]
   end
+
+  resources :restaurants, only: [:show] do
+    resources :comments, only: [:new, :create, :show, :edit]
+  end 
 end
