@@ -1,0 +1,5 @@
+<h1>Add a comment for <%= @restaurant.name %></h1>
+<%= form_for @comment do |f| %>
+  <%= f.label :content, "Thoughts about this restaurant:" %>
+  <%= f.text_field :content %>
+<% end %>
