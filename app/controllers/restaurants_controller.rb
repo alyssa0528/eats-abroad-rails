@@ -24,20 +24,26 @@ class RestaurantsController < ApplicationController
 
   #POST
   def create
-    @restaurant = Restaurant.new(restaurant_params)
-
-    if @restaurant.save
-      @restaurant.save
-      redirect_to chef_restaurant(@restaurant)
-    else
-      render :new
-    end
+    #for creating brand new restaurant
+    @new_restaurant = current_user.restaurants.build(restaurant_params)
+    @new_restaurant.save
+    redirect_to restaurant_path(@new_restaurant)
+    #if Restaurant.find(params[:restaurant][:id]) #if the restaurant was selected from drop-down
+    #  @restaurant = Restaurant.find(params[:restaurant][:id])
+    #  binding.pry
+    #if @restaurant.save
+    #  @restaurant.save
+    #  redirect_to chef_restaurant(@restaurant)
+    #else
+    #  render :new
+    #end
+    binding.pry
   end
 
 private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :cuisine, :city_id)
+    params.require(:restaurant).permit(:name, :cuisine, :city_id, :comments => [])
   end
 
 end

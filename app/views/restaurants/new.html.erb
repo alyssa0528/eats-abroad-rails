@@ -1,10 +1,10 @@
 Add an existing restaurant to your recommendations:
-<%= form_for @restaurant do |f| %>
-  <%= f.collection_select :id, Restaurant.all, :id, :name %><br>
-  <%= f.label :comments, "Comment" %>
-  <%= f.text_field :comments %><br>
-  <%= f.submit "Add Restaurant" %>
-<% end %>
+<!-- <%= form_for @restaurant do |f| %>
+  <%= f.collection_select :id, Restaurant.all, :id, :name, :prompt => "Please select" %><br> -->
+  <!-- <%= f.label :comment %>
+  <input name="restaurant[comments][]"></input><br> -->
+<!--  <%= f.submit "Add to My List" %>
+<% end %> -->
 
 Or create a new restaurant:
 <%= form_for @restaurant do |f| %>
@@ -12,8 +12,8 @@ Or create a new restaurant:
   <%= f.text_field :name %><br>
   <%= f.label :cuisine %>
   <%= f.text_field :cuisine %><br>
-  <%= f.collection_select :id, City.all, :id, :name %><br>
-  <%= f.label :comments, "Comment" %>
-  <%= f.text_field :comments %><br>
+  <%= f.collection_select :city_id, City.all, :id, :name, :prompt => "Please select" %><br>
+  <!-- <%= f.label :comment %>
+  <input name="restaurant[comments][]"></input><br> -->
   <%= f.submit "Create Restaurant and Add to My List" %>
 <% end %>
