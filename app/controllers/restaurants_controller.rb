@@ -4,6 +4,7 @@ class RestaurantsController < ApplicationController
   def index
     if params[:city_id]
       @restaurants = City.find(params[:city_id]).restaurants
+      @city = City.find(params[:city_id])
     elsif params[:chef_id]
       @restaurants = Chef.find(params[:chef_id]).restaurants
       @chef = Chef.find(params[:chef_id])
@@ -25,6 +26,7 @@ class RestaurantsController < ApplicationController
   #POST
   def create
     #for creating brand new restaurant
+    #binding.pry
     @new_restaurant = current_user.restaurants.build(restaurant_params)
     @new_restaurant.save
     redirect_to restaurant_path(@new_restaurant)

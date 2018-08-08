@@ -1,6 +1,8 @@
 
-<% if current_user.id == params[:chef_id] %>
+<% if current_user.id.to_s == params[:chef_id] %>
   <h1>My Recommended Restaurants</h1>
+<% elsif params[:city_id] %>
+  <h1>Recommended Restaurants in <%= @city.name %></h1>
 <% else %>
   <h1><%= @chef.name %>'s Recommended Restaurants</h1>
 <% end %>
