@@ -5,6 +5,6 @@
 <h3>Recommendations:</h3>
 <ul>
   <% @restaurant.comments.each do |c| %>
-  <li><%= c.content %> - <%= c.chef.name %></li>
+  <li><%= c.content %> - <%= link_to c.chef.name, chef_path(c.chef) %></li>
 </ul>
   <% end %>

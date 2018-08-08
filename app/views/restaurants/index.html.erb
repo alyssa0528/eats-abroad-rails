@@ -18,6 +18,6 @@
 </ul>
 
 
-<% if current_user.id == params[:chef_id] %>
+<% if current_user.id.to_s == params[:chef_id] %>
   <%= link_to "Recommend a new restaurant", new_chef_restaurant_path %>
 <% end %>
