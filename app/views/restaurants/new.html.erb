@@ -14,10 +14,10 @@ Or create a new restaurant:
   <%= f.text_field :cuisine %><br>
   <%= f.collection_select :city_id, City.all, :id, :name, :prompt => "Please select" %><br>
   <%= f.label :comment %>
-  <input name="restaurant[comment_ids][]"></input><br>
-  <!-- <%= f.fields_for :comments do |comment| %>
+  <!-- <input name="restaurant[comment_ids][]"></input><br>
+  <%= f.fields_for :comments do |comment| %>
     <%= comment.label :content %>
-    <%= comment.text_field :content %><br> -->
-  <% end %>
+    <%= comment.text_field :content %><br>
+  <% end %>-->
   <%= f.submit "Create Restaurant and Add to My List" %>
 <% end %>
