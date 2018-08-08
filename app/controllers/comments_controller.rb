@@ -3,10 +3,13 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
+    @restaurant = Restaurant.find(params[:restaurant_id])
   end
 
   def create
+    #binding.pry
     @comment = current_user.comments.build(comments_params)
+    @comment.restaurant_id = params[:restaurant_id]
 
     if @comment
       @comment.save
@@ -30,6 +33,6 @@ class CommentsController < ApplicationController
   end
 
   def comments_params
-    params.require(:comments).permit(content: [])
+    params.require(:comment).permit(:content)
   end
 end
