@@ -1,6 +1,6 @@
 <h1>Featured Cities on Eats Abroad</h1>
 <ul>
 <% @cities.each do |c| %>
-  <li><%= c.name %></li>
+  <li><%= link_to c.name, city_restaurants_path(c) %></li>
 <% end %>
 </ul>
