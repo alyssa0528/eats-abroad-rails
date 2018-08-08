@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :restaurants, only: [:index, :show, :new, :create]
 
-  resources :chefs, only: [:index, :new, :create, :show]
+  resources :chefs, only: [:index, :new, :create, :show, :edit, :update]
   resources :chefs, only: [:show] do
     resources :restaurants, only: [:index, :show, :new]
   end

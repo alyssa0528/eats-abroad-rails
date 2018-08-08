@@ -1,5 +1,5 @@
 class ChefsController < ApplicationController
-  before_action :find_chef, only: [:show]
+  before_action :find_chef, only: [:show, :edit, :update]
 
   #GET /chefs/new (show signup form)
   def new
@@ -10,7 +10,7 @@ class ChefsController < ApplicationController
   def create
     @chef = Chef.new(chef_params)
 
-    if @chef.save 
+    if @chef.save
       redirect_to chef_path(@chef)
     else
       render :new #have error messages appear
@@ -20,6 +20,17 @@ class ChefsController < ApplicationController
 
   #GET /chefs/:id
   def show
+  end
+
+  def edit
+  end
+
+  def update
+
+  #  raise params.inspect
+    @chef.update(chef_params)
+    binding.pry
+    redirect_to chef_path(@chef)
   end
 
   private

@@ -1,5 +1,8 @@
 <h1><%= @chef.name %>'s Profile</h1>
-<p><%= @chef.hometown %></p>
-<p><%= @chef.employer %></p>
+<p>Hometown: <%= @chef.hometown %></p>
+<p>My Restaurants: <%= @chef.employer %></p>
 
 <!-- edit profile if you're the chef -->
+<% if params[:id] == current_user.id.to_s %>
+  <%= link_to "Edit my profile", edit_chef_path(@chef) %>
+<% end %>
