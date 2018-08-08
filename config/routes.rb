@@ -20,6 +20,6 @@ Rails.application.routes.draw do
   end
 
   resources :restaurants, only: [:show] do
-    resources :comments, only: [:new, :create, :show, :edit]
-  end 
+    resources :comments, only: [:new, :create, :show, :edit, :update]
+  end
 end
