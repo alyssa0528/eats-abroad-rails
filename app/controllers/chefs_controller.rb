@@ -26,6 +26,10 @@ class ChefsController < ApplicationController
   end
 
   def edit
+    if @chef.email != session[:email]
+      redirect_to chef_path(current_user)
+      # error message saying they don't have permission? 
+    end
   end
 
   def update
