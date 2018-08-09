@@ -1,7 +1,12 @@
 <h1><%= @chef.name %>'s Profile</h1>
 <p>Hometown: <%= @chef.hometown %></p>
 <p>My Restaurants: <%= @chef.employer %></p>
-
+<p>My Recommendations: </p>
+<ul>
+  <% @chef.restaurants.each do |restaurant| %>
+    <%= link_to restaurant.name, restaurant_path(restaurant) %><br>
+  <% end %>
+</ul>
 <!-- edit profile if you're the chef -->
 <% if params[:id] == current_user.id.to_s %>
   <%= link_to "Edit my profile", edit_chef_path(@chef) %>
