@@ -63,9 +63,14 @@ class RestaurantsController < ApplicationController
           render :new
         end
       end
-    else
-      render :new
-      @chef = current_user
+      #to handle a brand new restaurant addition with missing required fields
+    elsif params[:restaurant][:name] == "" || params[:restaurant][:city_id] == ""
+      @restaurant = Restaurant.new(restaurant_params) #this won't save because it's missing a required field
+      if !@restaurant.save
+        binding.pry
+        render :new
+        @chef = current_user
+      end 
     end
     #if Restaurant.find(params[:restaurant][:id]) #if the restaurant was selected from drop-down
     #  @restaurant = Restaurant.find(params[:restaurant][:id])
