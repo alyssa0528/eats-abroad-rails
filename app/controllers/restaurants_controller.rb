@@ -20,6 +20,7 @@ class RestaurantsController < ApplicationController
 
   #GET /restaurants/new
   def new
+    @chef = current_user
     @restaurant = Restaurant.new
     @restaurant.comments.build
   end
@@ -29,13 +30,27 @@ class RestaurantsController < ApplicationController
     #for creating brand new restaurant
     #binding.pry
     #@new_restaurant = current_user.restaurants.build(restaurant_params)#(:name, :cuisine, :city_id))
-    #binding.pry
-    new_restaurant = current_user.restaurants.build(restaurant_params)
-    new_restaurant.save
+    binding.pry
+    #to handle existing restaurant addition
+    if params[:restaurant][:id]
+      @restaurant = Restaurant.find(params[:restaurant][:id])
+      #@restaurant.chefs << current_user #build the association
+      #current_user.restaurants << @restaurant
+      #new_restaurant = current_user.restaurants.build(restaurant_params)
+      #new_restaurant.save
     #@new_restaurant.save
     #@new_restaurant.comments.build(params[:restaurant][:comment_contents => []])
     #@new_restaurant.save
-    redirect_to new_restaurant_comment_path(new_restaurant)
+      redirect_to new_restaurant_comment_path(@restaurant)
+
+    #to handle new restaurant addition - WORKING
+    elsif params[:restaurant][:name]
+      new_restaurant = current_user.restaurants.build(restaurant_params)
+      new_restaurant.save
+      redirect_to new_restaurant_comment_path(new_restaurant)
+    else
+      render :new
+    end
     #if Restaurant.find(params[:restaurant][:id]) #if the restaurant was selected from drop-down
     #  @restaurant = Restaurant.find(params[:restaurant][:id])
     #  binding.pry

@@ -1,23 +1,25 @@
-Add an existing restaurant to your recommendations:
-<!-- <%= form_for @restaurant do |f| %>
-  <%= f.collection_select :id, Restaurant.all, :id, :name, :prompt => "Please select" %><br> -->
-  <!-- <%= f.label :comment %>
-  <input name="restaurant[comments][]"></input><br> -->
-<!--  <%= f.submit "Add to My List" %>
-<% end %> -->
+<div>
+  <h1>Add an existing restaurant to your recommendations:</h1>
+  <%= form_for :restaurant, :url => url_for(:controller => 'restaurants', :action => 'create'), method: :post do |f| %>
+    <%= f.collection_select :id, @chef.unrecommended_restaurants, :id, :name, :prompt => "Please select" %>
+    <%= f.submit "Add to My List" %>
+  <% end %>
+</div>
 
-Or create a new restaurant:
-<%= form_for @restaurant do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
-  <%= f.label :cuisine %>
-  <%= f.text_field :cuisine %><br>
-  <%= f.collection_select :city_id, City.all, :id, :name, :prompt => "Please select" %><br>
-  <%= f.label :comment %>
-  <!-- <input name="restaurant[comment_ids][]"></input><br>
-  <%= f.fields_for :comments do |comment| %>
-    <%= comment.label :content %>
-    <%= comment.text_field :content %><br>
-  <% end %>-->
-  <%= f.submit "Create Restaurant and Add to My List" %>
-<% end %>
+<div>
+  <h1>Or create a new restaurant:</h1>
+  <%= form_for @restaurant do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+    <%= f.label :cuisine %>
+    <%= f.text_field :cuisine %><br>
+    <%= f.label :city %>
+    <%= f.collection_select :city_id, City.all, :id, :name, :prompt => "Please select" %><br>
+    <!-- <input name="restaurant[comment_ids][]"></input><br>
+    <%= f.fields_for :comments do |comment| %>
+      <%= comment.label :content %>
+      <%= comment.text_field :content %><br>
+    <% end %>-->
+    <%= f.submit "Create Restaurant and Add to My List" %>
+  <% end %>
+</div>
