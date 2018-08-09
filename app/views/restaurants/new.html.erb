@@ -8,7 +8,6 @@
 
 <div>
   <h1>Or create a new restaurant:</h1>
-  <% binding.pry %>
   <%= form_for @restaurant do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name, placeholder: @restaurant.errors[:name] ? @restaurant.errors[:name][0] : '' %><br>
@@ -19,11 +18,6 @@
     <% if @restaurant.errors[:city_id] != [] %>
       <div class="field_with_errors"><%= @restaurant.errors[:city_id][0] %></div>
     <% end %>
-    <!-- <input name="restaurant[comment_ids][]"></input><br>
-    <%= f.fields_for :comments do |comment| %>
-      <%= comment.label :content %>
-      <%= comment.text_field :content %><br>
-    <% end %>-->
     <%= f.submit "Create Restaurant and Add to My List" %>
   <% end %>
 </div>
