@@ -39,13 +39,6 @@ class RestaurantsController < ApplicationController
     #to handle existing restaurant addition
     if params[:restaurant][:id] #will have id from dropdown
       @restaurant = Restaurant.find(params[:restaurant][:id]) #find the restaurant instance
-      #@restaurant.chefs << current_user #build the association
-      #current_user.restaurants << @restaurant
-      #new_restaurant = current_user.restaurants.build(restaurant_params)
-      #new_restaurant.save
-    #@new_restaurant.save
-    #@new_restaurant.comments.build(params[:restaurant][:comment_contents => []])
-    #@new_restaurant.save
       redirect_to new_restaurant_comment_path(@restaurant) #go to that restaurant's comments page
 
     #to handle brand new restaurant addition
@@ -67,20 +60,10 @@ class RestaurantsController < ApplicationController
     elsif params[:restaurant][:name] == "" || params[:restaurant][:city_id] == ""
       @restaurant = Restaurant.new(restaurant_params) #this won't save because it's missing a required field
       if !@restaurant.save
-        binding.pry
         render :new
         @chef = current_user
-      end 
+      end
     end
-    #if Restaurant.find(params[:restaurant][:id]) #if the restaurant was selected from drop-down
-    #  @restaurant = Restaurant.find(params[:restaurant][:id])
-    #  binding.pry
-    #if @restaurant.save
-    #  @restaurant.save
-    #  redirect_to chef_restaurant(@restaurant)
-    #else
-    #  render :new
-    #end
   end
 
 private
