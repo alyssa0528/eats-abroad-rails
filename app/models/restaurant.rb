@@ -6,25 +6,29 @@ class Restaurant < ApplicationRecord
   validates :name, presence: true
   validates :city_id, presence: true
 
-  accepts_nested_attributes_for :comments
+  #accepts_nested_attributes_for :comments
 
-
-  def comment_ids(ids)
-    ids.each do |id|
-      id = Comment.find(id)
-      self.comments << id
-    end
+  def self.by_cuisine(cuisine)
+    binding.pry
+    self.where(cuisine: cuisine.capitalize)
   end
 
-  def comment_ids
-    if self.comments
-      self.comments.each do |comment|
-        comment.content
-      end
-    else
-      nil
-    end
-  end
+  #def comment_ids(ids)
+  #  ids.each do |id|
+  #    id = Comment.find(id)
+  #    self.comments << id
+  #  end
+  #end
+
+  #def comment_ids
+  #  if self.comments
+  #    self.comments.each do |comment|
+  #      comment.content
+  #    end
+  #  else
+  #    nil
+  #  end
+  #end
 
   #def comment_contents=(comment_array)
   #  self.save #save the newly created restaurant
