@@ -13,25 +13,32 @@
     <li><%= link_to r.name, restaurant_path(r) %> - <%= r.city.name %></li>
   <% end %>
   <br>
-<% else %>
+<% elsif params[:chef_id] %>
   <h1><%= @chef.name %>'s Recommended Restaurants</h1>
   <% @restaurants.each do |r| %>
     <li><%= link_to r.name, restaurant_path(r) %></li>
   <% end %>
-  <br>
+<% else %>
+  <h1>Recommended Restaurants on Eats Abroad</h1>
+    <ul>
+      <% @restaurants.each do |r| %>
+        <li><%= link_to r.name, restaurant_path(r) %></li>
+      <% end %>
+    </ul>
+      <br>
 <% end %>
 
 <ul>
   <% if current_user.id.to_s == params[:chef_id] %>
     <% if @restaurants.size == 0 %>
-      <p>You haven't recommended any restaurants yet! Click <%= link_to "here", new_chef_restaurant_path %> to get started.</p>
+      <p>You haven't recommended any restaurants yet! Click <%= link_to "here", new_restaurant_path %> to get started.</p>
     <% else %>
       <% @restaurants.each do |r| %>
         <li><%= link_to r.name, restaurant_path(r) %></li>
       <% end %>
       <br>
+      <%= link_to "Recommend a new restaurant", new_restaurant_path %>
     <% end %>
-  <%= link_to "Recommend a new restaurant", new_restaurant_path %>
   <% end %>
 
 </ul>

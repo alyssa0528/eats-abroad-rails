@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  before_action :require_login
 
   #GET /restaurants (account for nested route and plain /restaurants route)
   def index
@@ -71,6 +72,10 @@ private
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :cuisine, :city_id)
+  end
+
+  def require_login
+    return head(:forbidden) unless session.include? :email
   end
 
 end
