@@ -13,12 +13,12 @@ Chef.create(name: "Kevin Arundel", email: "kevin@arundel.com", password: "food",
 Chef.create(name: "Sandy Wyer", email: "sandy@wyer.com", password: "food", hometown: "Dublin", employer: "Forest Avenue and Forest & Marcy") #id 8
 
 #chicago
-Restaurant.create(name: "HotChocolate", cuisine: "desserts", city_id: 1) #id 1
+Restaurant.create(name: "HotChocolate", cuisine: "Desserts", city_id: 1) #id 1
 Restaurant.create(name: "Tortas Frontera", cuisine: "Mexican", city_id: 1) #id 2
 Restaurant.create(name: "Fat Rice", cuisine: "Macanese", city_id: 1) #id 3
-Restaurant.create(name: "Pequod's", cuisine: "pizza", city_id: 1) #id 4
+Restaurant.create(name: "Pequod's", cuisine: "Pizza", city_id: 1) #id 4
 #vancouver
-Restaurant.create(name: "Thomas Haas Chocolates & Patisserie", cuisine: "desserts", city_id: 2) #id 5
+Restaurant.create(name: "Thomas Haas Chocolates & Patisserie", cuisine: "Desserts", city_id: 2) #id 5
 Restaurant.create(name: "Le Crocodile", cuisine: "French", city_id: 2) #id 6
 Restaurant.create(name: "Phnom Penh", cuisine: "Cambodian", city_id: 2) #id 7
 Restaurant.create(name: "Bao Bei", cuisine: "Chinese", city_id: 2) #id 8
@@ -26,12 +26,12 @@ Restaurant.create(name: "Bao Bei", cuisine: "Chinese", city_id: 2) #id 8
 Restaurant.create(name: "Myers + Chang", cuisine: "Asian", city_id: 3) #id 9
 Restaurant.create(name: "Sweet Cheeks", cuisine: "Southern", city_id: 3) #id 10
 Restaurant.create(name: "Cafe Sushi", cuisine: "Japanese", city_id: 3) #id 11
-Restaurant.create(name: "Picco", cuisine: "ice cream", city_id: 3) #id 12
+Restaurant.create(name: "Picco", cuisine: "Desserts", city_id: 3) #id 12
 #dublin
 Restaurant.create(name: "777", cuisine: "Mexican", city_id: 4) #id 13
 Restaurant.create(name: "Balfes Bar & Brasserie", cuisine: "Irish", city_id: 4) #id 14
-Restaurant.create(name: "The Greenhouse", cuisine: "modern Irish", city_id: 4) #id 15
-Restaurant.create(name: "Toners", cuisine: "pub", city_id: 4) #id 16
+Restaurant.create(name: "The Greenhouse", cuisine: "Modern Irish", city_id: 4) #id 15
+Restaurant.create(name: "Toners", cuisine: "Irish", city_id: 4) #id 16
 
 
 #chicago
