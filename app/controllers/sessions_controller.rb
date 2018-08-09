@@ -10,21 +10,16 @@ class SessionsController < ApplicationController
       @chef = Chef.find_by(:email => params[:email])
 
       if @chef && @chef.authenticate(params[:password])
-        #raise params.inspect
         session[:email] = @chef.email
-        #binding.pry
         redirect_to root_path
       else
         render :new
       end
     elsif auth[:info][:email]
-      #binding.pry
       @chef = Chef.find_or_create_by(email: auth[:info][:email]) do |c|
         c.name = auth['info']['name']
         c.uid = auth[:uid]
         c.password = 'password'
-        #give user a fake password just to pass your validations!
-        #c.email = auth['info']['email']
       end
 
       session[:email] = @chef.email
