@@ -7,15 +7,15 @@ class CommentsController < ApplicationController
   end
 
   def create
-    #binding.pry
+    @comment = Comment.new
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    
     @comment = current_user.comments.build(comments_params)
     @comment.restaurant_id = params[:restaurant_id]
-    binding.pry
-    if @comment.errors.any?
-      render :new
-    else
-      @comment.save
+    if @comment.save #if it can save to DB successfully
       redirect_to restaurant_path(@comment.restaurant)
+    else #if there are errors, render new form
+      render :new
     end
 
   end
