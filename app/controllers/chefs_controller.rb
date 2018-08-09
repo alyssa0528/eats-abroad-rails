@@ -10,8 +10,11 @@ class ChefsController < ApplicationController
   def create
     @chef = Chef.new(chef_params)
 
-    if @chef.save
-      redirect_to chef_path(@chef)
+    if @chef
+      @chef.save
+      session[:email] = @chef.email
+      binding.pry
+      redirect_to root_path
     else
       render :new #have error messages appear
     end
