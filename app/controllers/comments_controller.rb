@@ -10,12 +10,12 @@ class CommentsController < ApplicationController
     #binding.pry
     @comment = current_user.comments.build(comments_params)
     @comment.restaurant_id = params[:restaurant_id]
-
-    if @comment
+    binding.pry
+    if @comment.errors.any?
+      render :new
+    else
       @comment.save
       redirect_to restaurant_path(@comment.restaurant)
-    else
-      render :new
     end
 
   end

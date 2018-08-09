@@ -1,6 +1,6 @@
 <h1>Add a comment for <%= @restaurant.name %></h1>
 <%= form_for :comment, :url => url_for(:controller => 'comments', :action => 'create'), method: :post do |f| %>
   <%= f.label :content, "Thoughts about this restaurant:" %>
-  <%= f.text_field :content %>
+  <%= f.text_field :content, placeholder: @comment.errors[:content] ? @comment.errors[:content][0] : '' %>
   <%= f.submit "Add comment" %>
 <% end %>
