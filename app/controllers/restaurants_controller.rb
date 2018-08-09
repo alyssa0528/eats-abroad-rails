@@ -51,6 +51,7 @@ class RestaurantsController < ApplicationController
         @new_restaurant = current_user.restaurants.build(restaurant_params)
         if @new_restaurant.save
           @new_restaurant.save
+          binding.pry
           redirect_to new_restaurant_comment_path(@new_restaurant)
         else
           render :new

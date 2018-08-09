@@ -6,11 +6,17 @@ class Restaurant < ApplicationRecord
   validates :name, presence: true
   validates :city_id, presence: true
 
+  before_validation :capitalize_cuisine
+
   #accepts_nested_attributes_for :comments
 
   def self.by_cuisine(cuisine)
     binding.pry
     self.where(cuisine: cuisine.capitalize)
+  end
+
+  def capitalize_cuisine
+    self.cuisine = self.cuisine.capitalize
   end
 
   #def comment_ids(ids)
