@@ -3,29 +3,16 @@
   <h1>My Recommended Restaurants</h1>
 <% elsif params[:city_id] %>
   <h1>Recommended Restaurants in <%= @city.name %></h1>
-  <% @restaurants.each do |r| %>
-    <li><%= link_to r.name, restaurant_path(r) %></li>
-  <% end %>
-  <br>
+    <%= render 'iterate' %>
 <% elsif params[:type] %>
   <h1>Recommended <%= params[:type].capitalize %> Restaurants on Eats Abroad</h1>
-  <% @restaurants.each do |r| %>
-    <li><%= link_to r.name, restaurant_path(r) %> - <%= r.city.name %></li>
-  <% end %>
-  <br>
+    <%= render 'iterate' %>
 <% elsif params[:chef_id] %>
   <h1><%= @chef.name %>'s Recommended Restaurants</h1>
-  <% @restaurants.each do |r| %>
-    <li><%= link_to r.name, restaurant_path(r) %></li>
-  <% end %>
+    <%= render 'iterate' %>
 <% else %>
   <h1>Recommended Restaurants on Eats Abroad</h1>
-    <ul>
-      <% @restaurants.each do |r| %>
-        <li><%= link_to r.name, restaurant_path(r) %></li>
-      <% end %>
-    </ul>
-      <br>
+    <%= render 'iterate' %>
 <% end %>
 
 <ul>
