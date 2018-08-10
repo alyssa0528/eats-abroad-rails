@@ -13,10 +13,9 @@ class ChefsController < ApplicationController
     if @chef
       @chef.save
       session[:email] = @chef.email
-      binding.pry
       redirect_to root_path
     else
-      render :new 
+      render :new
     end
 
   end
@@ -32,10 +31,7 @@ class ChefsController < ApplicationController
   end
 
   def update
-
-  #  raise params.inspect
     @chef.update(chef_params)
-    binding.pry
     redirect_to chef_path(@chef)
   end
 

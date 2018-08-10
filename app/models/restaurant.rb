@@ -9,14 +9,11 @@ class Restaurant < ApplicationRecord
   before_validation :capitalize_cuisine
 
   def self.by_cuisine(cuisine)
-    binding.pry
     self.where(cuisine: cuisine.capitalize)
   end
 
   def capitalize_cuisine
     self.cuisine = self.cuisine.capitalize
   end
-
-
 
 end

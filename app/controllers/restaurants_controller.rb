@@ -6,7 +6,6 @@ class RestaurantsController < ApplicationController
     if params[:type]
       #find restaurants with this cuisine type
       @restaurants = Restaurant.by_cuisine(params[:type])
-      binding.pry
     elsif params[:city_id]
       @restaurants = City.find(params[:city_id]).restaurants
       @city = City.find(params[:city_id])
@@ -27,7 +26,6 @@ class RestaurantsController < ApplicationController
   def new
     @chef = current_user
     @restaurant = Restaurant.new
-    #@restaurant.comments.build
   end
 
   #POST
@@ -49,8 +47,6 @@ class RestaurantsController < ApplicationController
       else  #if it's a brand new restaurant not in the database
         @new_restaurant = current_user.restaurants.build(restaurant_params)
         if @new_restaurant.save
-          @new_restaurant.save
-          binding.pry
           redirect_to new_restaurant_comment_path(@new_restaurant)
         else
           render :new
