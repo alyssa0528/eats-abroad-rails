@@ -1,0 +1,10 @@
+<%= f.label :name %>
+<%= f.text_field :name, placeholder: @chef.errors[:name] ? @chef.errors[:name][0] : '' %><br>
+<%= f.label :email %>
+<%= f.text_field :email, placeholder: @chef.errors[:email] ? @chef.errors[:email][0] : '' %><br>
+<%= f.label :password %>
+<%= f.password_field :password, placeholder: @chef.errors[:password] ? @chef.errors[:password][0] : '' %><br>
+<%= f.label :hometown %>
+<%= f.text_field :hometown %><br>
+<%= f.label :employer %>
+<%= f.text_field :employer %><br>
