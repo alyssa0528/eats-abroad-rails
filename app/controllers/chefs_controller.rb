@@ -16,7 +16,7 @@ class ChefsController < ApplicationController
       binding.pry
       redirect_to root_path
     else
-      render :new #have error messages appear
+      render :new 
     end
 
   end
@@ -28,7 +28,6 @@ class ChefsController < ApplicationController
   def edit
     if @chef.email != session[:email]
       redirect_to chef_path(current_user)
-      # error message saying they don't have permission? 
     end
   end
 

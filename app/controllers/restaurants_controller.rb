@@ -3,7 +3,6 @@ class RestaurantsController < ApplicationController
 
   #GET /restaurants (account for nested route and plain /restaurants route)
   def index
-    #binding.pry
     if params[:type]
       #find restaurants with this cuisine type
       @restaurants = Restaurant.by_cuisine(params[:type])
