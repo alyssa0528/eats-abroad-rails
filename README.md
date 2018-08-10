@@ -1,24 +1,17 @@
-# README
+# Welcome to the Eats Abroad restaurant recommendation app!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Usage
 
-Things you may want to cover:
+Eats Abroad allows chefs to create a list of their favorite restaurants and share with other chefs. Comments allow chefs to provide more details on favorite dishes and other notable aspects of the establishment.
 
-* Ruby version
+## Install instructions
 
-* System dependencies
+Clone the repo. Run bundle install. Run rake db:migrate. Run rake db:seed to populate the database with the provided data. Run 'rails s' and go to the specified server via your browser.
 
-* Configuration
+## Contributors' Guide
 
-* Database creation
+Bug reports and pull requests are welcome on GitHub at https://github.com/'alyssa0528'/eats-abroad-sinatra. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
-* Database initialization
+##License
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Please refer to the MIT License documentation in the license.txt file for more information.
