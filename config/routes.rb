@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/signin' => 'sessions#create'
   get '/auth/facebook/callback' => 'sessions#create'
   get '/restaurants/cuisine/:type' => 'restaurants#index'
+  post '/restaurants/search' => 'restaurants#search'
 
   delete '/signout' => 'sessions#destroy'
   resources :cities, only: [:index]

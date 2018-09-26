@@ -20,3 +20,10 @@
   <h1>Recommended Restaurants on Eats Abroad</h1>
     <%= render 'iterate' %>
 <% end %>
+
+<h2>Search by Cuisine</h2>
+<%= form_tag restaurants_search_path do %>
+  <label>Search</label>
+  <%= text_field_tag :search %>
+  <%= submit_tag "Search"%>
+<% end %>

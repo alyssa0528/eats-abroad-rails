@@ -9,8 +9,8 @@ class ChefsController < ApplicationController
   #POST /chefs (create new chef user)
   def create
     @chef = Chef.new(chef_params)
-    binding.pry
-    if @chef.save 
+    #binding.pry
+    if @chef.save
       session[:email] = @chef.email
       redirect_to root_path
     else

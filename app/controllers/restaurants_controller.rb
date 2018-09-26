@@ -7,11 +7,11 @@ class RestaurantsController < ApplicationController
       #find restaurants with this cuisine type
       @restaurants = Restaurant.by_cuisine(params[:type])
     elsif params[:city_id]
-      @restaurants = City.find(params[:city_id]).restaurants
       @city = City.find(params[:city_id])
+      @restaurants = @city.restaurants
     elsif params[:chef_id]
-      @restaurants = Chef.find(params[:chef_id]).restaurants
       @chef = Chef.find(params[:chef_id])
+      @restaurants = @chef.restaurants
     else
       @restaurants = Restaurant.all
     end
@@ -20,6 +20,11 @@ class RestaurantsController < ApplicationController
   #GET /restaurants/:id
   def show
     @restaurant = Restaurant.find(params[:id])
+  end
+
+  def search
+    redirect_to "/restaurants/cuisine/#{params[:search]}"
+    #binding.pry
   end
 
   #GET /restaurants/new
@@ -57,7 +62,6 @@ class RestaurantsController < ApplicationController
       @restaurant = Restaurant.new(restaurant_params) #this won't save because it's missing a required field
       if !@restaurant.save
         render :new
-        @chef = current_user
       end
     end
   end
