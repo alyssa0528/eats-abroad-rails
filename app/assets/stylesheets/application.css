@@ -17,3 +17,7 @@
 .field_with_errors input {
   border: red 1px solid;
 }
+
+.navigation {
+  background-color: #F58632;
+}

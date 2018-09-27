@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EatsAbroadRails</title>
+    <title>Eats Abroad</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,15 @@
   </head>
 
   <body>
+    <div class="navigation">
+      <img src="/Eats Abroad Logo-v-5A Mar.jpg" width="165" height="125" alt="Eats Abroad logo">
+      <ul>
+        <a href="/">Home</a> |
+        <a href="/chefs/">My Profile</a> |
+        <a href="/restaurants">Browse Restaurants</a> |
+        <a href="/signout">Log Out</a>
+      </ul>
+    </div>
     <%= yield %>
   </body>
 </html>

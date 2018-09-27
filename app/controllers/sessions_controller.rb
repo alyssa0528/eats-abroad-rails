@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
 
   #/signin
   def new
+    render :layout => false
   end
 
   #post /signin
