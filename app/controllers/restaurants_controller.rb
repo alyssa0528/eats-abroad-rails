@@ -14,12 +14,21 @@ class RestaurantsController < ApplicationController
       @restaurants = @chef.restaurants
     else
       @restaurants = Restaurant.all
+      respond_to do |f|
+        f.html
+        f.json {render json: @restaurants}
+      end
     end
   end
 
   #GET /restaurants/:id
   def show
     @restaurant = Restaurant.find(params[:id])
+
+    respond_to do |f|
+      f.html
+      f.json {render json: @restaurant}
+    end
   end
 
   def search
