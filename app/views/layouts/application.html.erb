@@ -14,9 +14,11 @@
       <img src="/Eats Abroad Logo-v-5A Mar.jpg" width="165" height="125" alt="Eats Abroad logo">
       <ul>
         <a href="/">Home</a> |
-        <a href="/chefs/" id="profile">My Profile</a> |
+
+        <a href="/chefs/<%=current_user[:id]%>" id="profile">My Profile</a> |
         <a href="/restaurants" id="all_restaurants">Browse Restaurants</a> |
-        <a href="/signout">Log Out</a>
+        <a href="/restaurants/new" id="new_restaurant">Add a Restaurant</a> |
+        <%= link_to "Log Out", signout_path, method: :delete %>
       </ul>
     </div>
     <div id="body-container">
