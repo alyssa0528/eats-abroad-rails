@@ -84,10 +84,12 @@ Restaurant.prototype.formatShow = function() {
       ${this.comments.map((comment) => `
         <li>
         ${comment.content}
-        debugger
         </li>
-      `)}
+      `
+    ).join('')
+  }
     </ul>
-  ` //create button for "More Info" that will show comments for the restaurant
+    `
+    //create button for "More Info" that will show comments for the restaurant
   return restaurantHtml
 }
