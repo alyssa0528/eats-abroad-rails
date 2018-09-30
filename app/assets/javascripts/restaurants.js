@@ -28,13 +28,24 @@ const bindClickListeners = function() {
       .then(restaurant => {
         // append restaurant JSON object to the #body-container div
         let newRestaurant = new Restaurant(restaurant);
+        console.log(restaurant)
         let restaurantHtml = newRestaurant.formatShow();
-        console.log(restaurantHtml)
         $('#body-container').append(restaurantHtml)
       })
     })
-  }
+    //hijack new restaurant form
+    //on submit, hijack form
+    //get input
+  $('#new_restaurant').on('submit', function(e) { //#new-restaurant is form id; need id for dropdown
+    e.preventDefault();
+    //get form input values...
+    //console.log($(this))
+    let $formValues = $('#new_restaurant :input')
+    console.log($formValues)
+    //$('#body-container').html('')
 
+  })
+}
 
 function Restaurant(restaurant) {
   this.id = restaurant.id
@@ -53,11 +64,30 @@ Restaurant.prototype.formatIndex = function() {
   return restaurantHtml
 }
 
+//function printComments(comments) {
+  //comments.content.forEach(function(comment) {
+    //comment.content
+    //debugger
+    //comment.chef.name
+//  })
+//}
+
 Restaurant.prototype.formatShow = function() {
+  //debugger
+  //let comments = printComments(this.comments)
   let restaurantHtml = `
     <h1>${this.name}</h1>
     <p>Cuisine: ${this.cuisine}</p>
     <p>City: ${this.city.name}</p>
+    <p>Recommendations:</p>
+    <ul>
+      ${this.comments.map((comment) => `
+        <li>
+        ${comment.content}
+        debugger
+        </li>
+      `)}
+    </ul>
   ` //create button for "More Info" that will show comments for the restaurant
   return restaurantHtml
 }
