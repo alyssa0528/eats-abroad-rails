@@ -33,15 +33,25 @@ const bindClickListeners = function() {
         $('#body-container').append(restaurantHtml)
       })
     })
-    //hijack new restaurant form
-    //on submit, hijack form
-    //get input
+    //hijack existing restaurant form
+  $('#add_existing').on('submit', function(e) {
+    e.preventDefault();
+    console.log(this)
+  })
+  //hijack new restaurant form
+  //on submit, hijack form
+  //get input
   $('#new_restaurant').on('submit', function(e) { //#new-restaurant is form id; need id for dropdown
     e.preventDefault();
+    $('#body-container').html('')
     //get form input values...
-    //console.log($(this))
-    let $formValues = $('#new_restaurant :input')
-    console.log($formValues)
+    let $newRestaurantName = $('input#restaurant_name').val()
+    let newRestaurantCuisine = $('input#restaurant_cuisine').val()
+    let newRestaurantCityId = $('select#restaurant_city_id').val()
+    //let $formValues = $('#new_restaurant :input')
+    console.log($('input#restaurant_name'))
+    $('#body-container').append(`<h1>Add a comment for ${newRestaurantName}:</h1>`)
+    //console.log($formValues)
     //$('#body-container').html('')
 
   })
@@ -79,11 +89,21 @@ Restaurant.prototype.formatShow = function() {
     <h1>${this.name}</h1>
     <p>Cuisine: ${this.cuisine}</p>
     <p>City: ${this.city.name}</p>
+    <p>Chefs Who Recommend:</p>
+    <ul>
+      ${this.chefs.map((chef) => `
+        <li>
+          ${chef.name}
+        </li>
+        `).join('')
+      }
+    </ul>
     <p>Recommendations:</p>
     <ul>
       ${this.comments.map((comment) => `
         <li>
         ${comment.content}
+
         </li>
       `
     ).join('')
