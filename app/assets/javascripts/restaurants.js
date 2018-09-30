@@ -43,15 +43,26 @@ const bindClickListeners = function() {
   //get input
   $('#new_restaurant').on('submit', function(e) { //#new-restaurant is form id; need id for dropdown
     e.preventDefault();
+    console.log("yo!")
     //
     //get form input values...
-    let $newRestaurantName = $('input#restaurant_name').val()
-    let newRestaurantCuisine = $('input#restaurant_cuisine').val()
-    let newRestaurantCityId = $('select#restaurant_city_id').val()
+    console.log($(this).serialize())
+    let formValues = $(this).serialize();
+
+    let posting = $.post('/restaurants', formValues);
+
+    posting.done(function(data) {
+      console.log(data)
+    })
+
+    //let $newRestaurantName = $('input#restaurant_name').val()
+    //let newRestaurantCuisine = $('input#restaurant_cuisine').val()
+    //let newRestaurantCityId = $('select#restaurant_city_id').val()
     //let $formValues = $('#new_restaurant :input')
     //console.log($('input#restaurant_name').val())
-    $('#body-container').html('')
-    $('#body-container').append(`<h1>Add a comment for ${$newRestaurantName}:</h1>`)
+    //POST REQUEST TO /RESTAURANTS
+    //$('#body-container').html('')
+    //$('#body-container').append(`<h1>Add a comment for ${$newRestaurantName}:</h1>`)
   })
 }
 
@@ -87,21 +98,11 @@ Restaurant.prototype.formatShow = function() {
     <h1>${this.name}</h1>
     <p>Cuisine: ${this.cuisine}</p>
     <p>City: ${this.city.name}</p>
-    <p>Chefs Who Recommend:</p>
-    <ul>
-      ${this.chefs.map((chef) => `
-        <li>
-          ${chef.name}
-        </li>
-        `).join('')
-      }
-    </ul>
     <p>Recommendations:</p>
     <ul>
       ${this.comments.map((comment) => `
         <li>
-        ${comment.content}
-
+        ${comment.content} — ${comment.chef.name}
         </li>
       `
     ).join('')
