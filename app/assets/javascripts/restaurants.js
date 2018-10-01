@@ -3,6 +3,7 @@ $(() => {
 })
 
 const bindClickListeners = function() {
+  //for INDEX restaurants
   $('#all_restaurants').on('click', function(e) {
     e.preventDefault();
     history.pushState(null, null, "restaurants") //updates URL
@@ -33,48 +34,52 @@ const bindClickListeners = function() {
         $('#body-container').append(restaurantHtml)
       })
     })
-    //SHOW RECOMMENDATIONS BUTTON
-    //hijack see  -recs button
-    //have it reveal the <ul> of recommendations and the recommender's name
+    //for "see recommendations" link
   $(document).on('click', '#see-recs', function(e) {
     e.preventDefault()
-    //console.log("button's been clicked")
-    //'this' here is the <a href="#" id="see-recs"> tag
     let $id = $(this)[0].pathname
-    //console.log($id)
     fetch(`${$id}.json`)
       .then(response => response.json())
       .then(data => {
-        //create a comment??
-        //append html?
-        //let newComment = new Comment(data.)
-        //console.log(data.comments)
         let newRestaurant = new Restaurant(data);
         let restaurantHtml = newRestaurant.revealComments();
         $('#see-recs').replaceWith(restaurantHtml)
       })
   })
-    //hijack existing restaurant form
-  //$('#add_existing').on('submit', function(e) {
+    //for adding existing restaurant form
+  //$('#add_existing').on('submit', function(e) { //#add_existing is the ID for the form
     //e.preventDefault();
     //console.log(this)
   //})
-  //hijack new restaurant form
-  //on submit, hijack form
-  //get input
-  $('#new_restaurant').on('submit', function(e) { //#new-restaurant is form id; need id for dropdown
-    e.preventDefault();
-    console.log("yo!")
-    //
+  //for BRAND NEW restaurant form
+  $('#new_restaurant').on('submit', function(e) { //#new-restaurant is form id
+    //e.preventDefault();
     //get form input values...
-    console.log($(this).serialize())
-    let formValues = $(this).serialize();
+    console.log($(this))
+    let action = $(this).attr('action')
+    let method = $(this).attr('method')
+    let restaurantName = $(this).find('#restaurant_name').val()
+    let restaurantCuisine = $(this).find('#restaurant_cuisine').val()
+    let restaurantCityId = $(this).find('#restaurant_city_id').val()
+    let data = $(this).serializeArray(); //the method gathers all inputs and values
+    console.log(data)
 
-    let posting = $.post('/restaurants', formValues);
-
-    posting.done(function(data) {
-      console.log(data)
+    $.ajax({
+      method: method,
+      url: action,
+      data: data
     })
+
+    //'this' is the form
+    //console.log($(this).serialize())
+    //let formValues = $(this).serialize();
+
+    //let posting = $.post('/restaurants', formValues);
+
+    //posting.done(function(data) {
+    //  console.log(data)
+  //  })
+
 
     //let $newRestaurantName = $('input#restaurant_name').val()
     //let newRestaurantCuisine = $('input#restaurant_cuisine').val()
