@@ -28,11 +28,32 @@ const bindClickListeners = function() {
       .then(restaurant => {
         // append restaurant JSON object to the #body-container div
         let newRestaurant = new Restaurant(restaurant);
-        console.log(restaurant)
+        //console.log(restaurant)
         let restaurantHtml = newRestaurant.formatShow();
         $('#body-container').append(restaurantHtml)
       })
     })
+    //SHOW RECOMMENDATIONS BUTTON
+    //hijack see  -recs button
+    //have it reveal the <ul> of recommendations and the recommender's name
+  $(document).on('click', '#see-recs', function(e) {
+    e.preventDefault()
+    //console.log("button's been clicked")
+    //'this' here is the <a href="#" id="see-recs"> tag
+    let $id = $(this)[0].pathname
+    //console.log($id)
+    fetch(`${$id}.json`)
+      .then(response => response.json())
+      .then(data => {
+        //create a comment??
+        //append html?
+        //let newComment = new Comment(data.)
+        //console.log(data.comments)
+        let newRestaurant = new Restaurant(data);
+        let restaurantHtml = newRestaurant.revealComments();
+        $('#see-recs').replaceWith(restaurantHtml)
+      })
+  })
     //hijack existing restaurant form
   //$('#add_existing').on('submit', function(e) {
     //e.preventDefault();
@@ -66,7 +87,7 @@ const bindClickListeners = function() {
   })
 }
 
-function Restaurant(restaurant) {
+function Restaurant(restaurant) { //reification (turning raw data and turning it into a JS object)
   this.id = restaurant.id
   this.name = restaurant.name
   this.cuisine = restaurant.cuisine
@@ -83,14 +104,6 @@ Restaurant.prototype.formatIndex = function() {
   return restaurantHtml
 }
 
-//function printComments(comments) {
-  //comments.content.forEach(function(comment) {
-    //comment.content
-    //debugger
-    //comment.chef.name
-//  })
-//}
-
 Restaurant.prototype.formatShow = function() {
   //debugger
   //let comments = printComments(this.comments)
@@ -98,17 +111,42 @@ Restaurant.prototype.formatShow = function() {
     <h1>${this.name}</h1>
     <p>Cuisine: ${this.cuisine}</p>
     <p>City: ${this.city.name}</p>
-    <p>Recommendations:</p>
+    <p>Recommended by:</p>
     <ul>
-      ${this.comments.map((comment) => `
+      ${this.chefs.map((chef) => `
         <li>
-        ${comment.content} — ${comment.chef.name}
+        <a href="/chefs/${chef.id}" class="chef_links">${chef.name}</a>
         </li>
-      `
-    ).join('')
-  }
+        `
+      ).join('')
+    }
     </ul>
+
+    <a href="#" id="see-recs">See Recommendations</a>
     `
     //create button for "More Info" that will show comments for the restaurant
   return restaurantHtml
+}
+
+function Comment(comment) {
+  this.id = comment.id
+  this.content = comment.content
+  this.chef = comment.chef
+  this.restaurant = comment.restaurant
+}
+
+Restaurant.prototype.revealComments = function() {
+  let recHtml = `
+  <p>Chefs' Comments:</p>
+  <ul>
+    ${this.comments.map((comment) => `
+      <li>
+      ${comment.content} — <a href="/chefs/${comment.chef.id}">${comment.chef.name}</a>
+      </li>
+    `
+  ).join('')
+}
+  </ul>
+  `
+  return recHtml
 }
