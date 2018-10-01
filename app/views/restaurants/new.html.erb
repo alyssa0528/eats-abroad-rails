@@ -1,6 +1,6 @@
 <div>
   <h1>Add an existing restaurant to your recommendations:</h1>
-  <%= form_for :restaurant, :url => url_for(:controller => 'restaurants', :action => 'create'), method: :post do |f| %>
+  <%= form_for :restaurant, :url => url_for(:controller => 'restaurants', :action => 'create'), :html => {:id => "add_existing"}, method: :post do |f| %>
     <%= f.collection_select :id, @chef.unrecommended_restaurants, :id, :name, :prompt => "Please select" %>
     <%= f.submit "Add to My List" %>
   <% end %>

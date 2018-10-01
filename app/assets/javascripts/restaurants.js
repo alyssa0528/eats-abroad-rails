@@ -45,30 +45,26 @@ const bindClickListeners = function() {
         let restaurantHtml = newRestaurant.revealComments();
         $('#see-recs').replaceWith(restaurantHtml)
       })
-  })
-    //for adding existing restaurant form
-  //$('#add_existing').on('submit', function(e) { //#add_existing is the ID for the form
-    //e.preventDefault();
-    //console.log(this)
-  //})
+    })
   //for BRAND NEW restaurant form
   $('#new_restaurant').on('submit', function(e) { //#new-restaurant is form id
-    //e.preventDefault();
+    e.preventDefault();
     //get form input values...
-    console.log($(this))
+    //console.log($(this))
     let action = $(this).attr('action')
     let method = $(this).attr('method')
     let restaurantName = $(this).find('#restaurant_name').val()
     let restaurantCuisine = $(this).find('#restaurant_cuisine').val()
     let restaurantCityId = $(this).find('#restaurant_city_id').val()
     let data = $(this).serializeArray(); //the method gathers all inputs and values
-    console.log(data)
+    //console.log(data)
 
     $.ajax({
       method: method,
       url: action,
       data: data
     })
+  })
 
     //'this' is the form
     //console.log($(this).serialize())
@@ -80,7 +76,6 @@ const bindClickListeners = function() {
     //  console.log(data)
   //  })
 
-
     //let $newRestaurantName = $('input#restaurant_name').val()
     //let newRestaurantCuisine = $('input#restaurant_cuisine').val()
     //let newRestaurantCityId = $('select#restaurant_city_id').val()
@@ -89,6 +84,20 @@ const bindClickListeners = function() {
     //POST REQUEST TO /RESTAURANTS
     //$('#body-container').html('')
     //$('#body-container').append(`<h1>Add a comment for ${$newRestaurantName}:</h1>`)
+
+  //for EXISTING RESTAURANT form (the restaurant drop-down)
+  $('#add_existing').on('submit', function(e) { //#add_existing is the ID for the form
+    //e.preventDefault();
+    //console.log($(this)) //'this' is the form itself
+    let action = $(this).attr('action')
+    let method = $(this).attr('method')
+    let data = $(this).serializeArray()
+    //console.log(data)
+    $.ajax({
+      method: method,
+      url: action,
+      data: data
+    })
   })
 }
 
