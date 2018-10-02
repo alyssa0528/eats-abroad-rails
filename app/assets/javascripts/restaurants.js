@@ -34,21 +34,6 @@ const bindClickListeners = function() {
         $('#body-container').append(restaurantHtml)
       })
     })
-    //for "see recommendations" link
-  //$(document).on('click', '#see-recs', function(e) {
-  //  e.preventDefault()
-  //  let id = this.href
-  //  fetch(`${id}.json`)
-  //    .then(response => response.json())
-  //    .then(data => {
-        //let newRestaurant = new Restaurant(data);
-        //debugger
-        //let restaurantHtml = newRestaurant.revealComments();
-  //      let newComment = new Comment(data);
-  //      console.log(newComment)
-  //      $('#see-recs').replaceWith(restaurantHtml)
-  //    })
-  //  })
   //for BRAND NEW restaurant form
   $('#new_restaurant').on('submit', function(e) { //#new-restaurant is form id
     e.preventDefault();
@@ -126,7 +111,7 @@ Restaurant.prototype.formatShow = function() {
     <h1>${this.name}</h1>
     <p><strong>Cuisine:</strong> ${this.cuisine}</p>
     <p><strong>City:</strong> ${this.city.name}</p>
-    <p>Recommended by:</p>
+    <p><strong>Recommended by:</strong></p>
     <ul>
       ${this.chefs.map((chef) => `
         <li>
@@ -140,26 +125,6 @@ Restaurant.prototype.formatShow = function() {
     <a href="/restaurants/${this.id}/comments" id="see-recs">See Recommendations</a>
     `
   return restaurantHtml
-}
-
-
-
-Restaurant.prototype.revealComments = function() {
-  debugger
-  let recHtml = `
-  <p>Chefs' Comments:</p>
-  <ul>
-    ${this.comments.map((comment) => `
-      <li>
-      ${comment.content} — <a href="/chefs/${comment.chef.id}">${comment.chef.name}</a>
-      </li>
-    `
-  ).join('')
-}
-  </ul>
-  `
-  debugger
-  return recHtml
 }
 
 Restaurant.prototype.showCommentForm = function() {
