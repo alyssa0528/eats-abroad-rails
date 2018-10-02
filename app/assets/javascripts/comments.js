@@ -6,20 +6,18 @@ const bindCommentClickListeners = function() {
   //for "see recommendations" link
   $(document).on('click', '#see-recs', function(e) {
     e.preventDefault()
-    let id = this.href
+    let id = this.pathname
+    console.log(id)
     fetch(`${id}.json`)
       .then(response => response.json())
       .then(data => {
-        //let newRestaurant = new Restaurant(data);
-        //debugger
-        //let restaurantHtml = newRestaurant.revealComments();
-        let newComments = data.map(function(comment) {
-          //debugger
-          new Comment(comment)
-        })
-        //console.log(newComments)
-        let commentHtml = newComments.revealComments()
-        //$('#see-recs').replaceWith(restaurantHtml)
+        let newComments = data.map(comment => new Comment(comment).revealComments())
+        //console.log(newComments) //returns array of 3 Comment objects
+        let commentHeadingHtml = `
+          <p id="chef_comment_heading"><strong>Chefs' Comments:</strong></p><ul id="comment_list"></ul>
+        `
+        $('#see-recs').replaceWith(commentHeadingHtml)
+        $('#comment_list').after(newComments)
       })
   })
 }
@@ -32,19 +30,9 @@ function Comment(comment) {
 }
 
 Comment.prototype.revealComments = function() {
-  debugger
-  let recHtml = `
-  <p>Chefs' Comments:</p>
-  <ul>
-    ${this.comments.map((comment) => `
+  let commentHtml = `
       <li>
-      ${comment.content} — <a href="/chefs/${comment.chef.id}">${comment.chef.name}</a>
-      </li>
-    `
-  ).join('')
-}
-  </ul>
+      ${this.content} — <a href="/chefs/${this.chef.id}">${this.chef.name}</a></li>
   `
-  debugger
-  return recHtml
+  return commentHtml
 }

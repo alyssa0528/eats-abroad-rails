@@ -6,7 +6,7 @@ const bindClickListeners = function() {
   //for INDEX restaurants
   $('#all_restaurants').on('click', function(e) {
     e.preventDefault();
-    history.pushState(null, null, "restaurants") //updates URL
+    //history.pushState(null, null, "restaurants") //updates URL
     fetch('/restaurants.json')
       .then(response => response.json())
       .then(restaurants => {
@@ -35,20 +35,24 @@ const bindClickListeners = function() {
       })
     })
     //for "see recommendations" link
-  $(document).on('click', '#see-recs', function(e) {
-    e.preventDefault()
-    let $id = $(this)[0].pathname
-    fetch(`${$id}.json`)
-      .then(response => response.json())
-      .then(data => {
-        let newRestaurant = new Restaurant(data);
-        let restaurantHtml = newRestaurant.revealComments();
-        $('#see-recs').replaceWith(restaurantHtml)
-      })
-    })
+  //$(document).on('click', '#see-recs', function(e) {
+  //  e.preventDefault()
+  //  let id = this.href
+  //  fetch(`${id}.json`)
+  //    .then(response => response.json())
+  //    .then(data => {
+        //let newRestaurant = new Restaurant(data);
+        //debugger
+        //let restaurantHtml = newRestaurant.revealComments();
+  //      let newComment = new Comment(data);
+  //      console.log(newComment)
+  //      $('#see-recs').replaceWith(restaurantHtml)
+  //    })
+  //  })
   //for BRAND NEW restaurant form
   $('#new_restaurant').on('submit', function(e) { //#new-restaurant is form id
     e.preventDefault();
+    $('#body-container').html('')
     //get form input values...
     //console.log($(this))
     let action = $(this).attr('action')
@@ -64,17 +68,13 @@ const bindClickListeners = function() {
       url: action,
       data: data
     })
+    //post the data, then show the comment form
+    //post the comment, and then take user to the restaurant's show page
+    //let newRestaurant = new Restaurant(data)
+    //console.log($(data))
+    //let restaurantHtml = newRestaurant.showCommentForm()
+    //('#body-container').append(restaurantHtml)
   })
-
-    //'this' is the form
-    //console.log($(this).serialize())
-    //let formValues = $(this).serialize();
-
-    //let posting = $.post('/restaurants', formValues);
-
-    //posting.done(function(data) {
-    //  console.log(data)
-  //  })
 
     //let $newRestaurantName = $('input#restaurant_name').val()
     //let newRestaurantCuisine = $('input#restaurant_cuisine').val()
@@ -87,7 +87,7 @@ const bindClickListeners = function() {
 
   //for EXISTING RESTAURANT form (the restaurant drop-down)
   $('#add_existing').on('submit', function(e) { //#add_existing is the ID for the form
-    //e.preventDefault();
+    e.preventDefault();
     //console.log($(this)) //'this' is the form itself
     let action = $(this).attr('action')
     let method = $(this).attr('method')
@@ -96,8 +96,11 @@ const bindClickListeners = function() {
     $.ajax({
       method: method,
       url: action,
-      data: data
+      data: data,
+      dataType: 'script'
     })
+    //post the data, then show the comment form
+    //post the comment, and then take user to the restaurant's show page
   })
 }
 
@@ -119,12 +122,10 @@ Restaurant.prototype.formatIndex = function() {
 }
 
 Restaurant.prototype.formatShow = function() {
-  //debugger
-  //let comments = printComments(this.comments)
   let restaurantHtml = `
     <h1>${this.name}</h1>
-    <p>Cuisine: ${this.cuisine}</p>
-    <p>City: ${this.city.name}</p>
+    <p><strong>Cuisine:</strong> ${this.cuisine}</p>
+    <p><strong>City:</strong> ${this.city.name}</p>
     <p>Recommended by:</p>
     <ul>
       ${this.chefs.map((chef) => `
@@ -136,20 +137,15 @@ Restaurant.prototype.formatShow = function() {
     }
     </ul>
 
-    <a href="#" id="see-recs">See Recommendations</a>
+    <a href="/restaurants/${this.id}/comments" id="see-recs">See Recommendations</a>
     `
-    //create button for "More Info" that will show comments for the restaurant
   return restaurantHtml
 }
 
-function Comment(comment) {
-  this.id = comment.id
-  this.content = comment.content
-  this.chef = comment.chef
-  this.restaurant = comment.restaurant
-}
+
 
 Restaurant.prototype.revealComments = function() {
+  debugger
   let recHtml = `
   <p>Chefs' Comments:</p>
   <ul>
@@ -162,5 +158,18 @@ Restaurant.prototype.revealComments = function() {
 }
   </ul>
   `
+  debugger
   return recHtml
+}
+
+Restaurant.prototype.showCommentForm = function() {
+  let commentFormHtml = `
+  <h2>Enter a comment for ${this.name}:</h2>
+  <form action="/restaurants/${this.id}/comments" method="post" accept-charset="UTF-8">
+    <label>Your thoughts:</label>
+    <input type="text" name="comment[content]" id="comment_content">
+    <input type="submit" name="commit" value="Add Comment" data-disable-with="Add Comment">
+  </form>
+  `
+  return commentFormHtml
 }
