@@ -6,7 +6,8 @@ const bindClickListeners = function() {
   //for INDEX restaurants
   $('#all_restaurants').on('click', function(e) {
     e.preventDefault();
-    //history.pushState(null, null, "restaurants") //updates URL
+    //history.pushState(null, null, "restaurants") //updates URL, but is incorrect when link is clicked
+    //from other pages...
     fetch('/restaurants.json')
       .then(response => response.json())
       .then(restaurants => {
@@ -23,7 +24,7 @@ const bindClickListeners = function() {
     e.preventDefault();
     $('#body-container').html('')
     let id = $(this).attr("data-id")
-    history.pushState(null, null, `restaurants/${id}`)
+    //history.pushState(null, null, `restaurants/${id}`) //incorrect when link is clicked from other page
     fetch(`/restaurants/${id}.json`)
       .then(response => response.json())
       .then(restaurant => {
@@ -51,7 +52,8 @@ const bindClickListeners = function() {
     $.ajax({
       method: method,
       url: action,
-      data: data
+      data: data,
+      dataType: 'script' //makes response format JS (not HTML)
     })
     //post the data, then show the comment form
     //post the comment, and then take user to the restaurant's show page

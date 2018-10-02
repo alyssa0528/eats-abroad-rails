@@ -51,7 +51,6 @@ class RestaurantsController < ApplicationController
     if params[:restaurant][:id] #will have id from dropdown
       @restaurant = Restaurant.find(params[:restaurant][:id]) #find the restaurant instance
       redirect_to new_restaurant_comment_path(@restaurant) #go to that restaurant's comments page
-
     #to handle brand new restaurant addition
     elsif params[:restaurant][:name] != "" && params[:restaurant][:city_id] != ""
       #if name and city ID are provided (required per validations)
@@ -61,7 +60,11 @@ class RestaurantsController < ApplicationController
       else  #if it's a brand new restaurant not in the database
         @new_restaurant = current_user.restaurants.build(restaurant_params)
         if @new_restaurant.save
-          redirect_to new_restaurant_comment_path(@new_restaurant)
+          respond_to do |format|
+            format.html {redirect_to new_restaurant_comment_path(@new_restaurant)} #go to that restaurant's comments page
+            format.js { }
+          end
+          #redirect_to new_restaurant_comment_path(@new_restaurant)
         else
           render :new
         end
