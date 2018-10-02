@@ -17,7 +17,15 @@ class CommentsController < ApplicationController
     else #if there are errors, render new form
       render :new
     end
+  end
 
+  def index
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @comments = @restaurant.comments
+    respond_to do |f|
+      f.html
+      f.json {render json: @comments}
+    end
   end
 
   private
