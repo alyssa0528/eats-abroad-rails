@@ -6,12 +6,24 @@ class RestaurantsController < ApplicationController
     if params[:type]
       #find restaurants with this cuisine type
       @restaurants = Restaurant.by_cuisine(params[:type])
+      respond_to do |f|
+        f.html
+        f.json {render json: @restaurants}
+      end
     elsif params[:city_id]
       @city = City.find(params[:city_id])
       @restaurants = @city.restaurants
+      respond_to do |f|
+        f.html
+        f.json {render json: @restaurants}
+      end
     elsif params[:chef_id]
       @chef = Chef.find(params[:chef_id])
       @restaurants = @chef.restaurants
+      respond_to do |f|
+        f.html
+        f.json {render json: @restaurants}
+      end
     else
       @restaurants = Restaurant.all
       respond_to do |f|
@@ -59,7 +71,8 @@ class RestaurantsController < ApplicationController
         redirect_to new_restaurant_comment_path(@restaurant) #go to new comment page
       else  #if it's a brand new restaurant not in the database
         @new_restaurant = current_user.restaurants.build(restaurant_params)
-        if @new_restaurant.save
+        #binding.pry
+        if @new_restaurant.save # .valid would simply check and not save, but then I don't have a restaurant ID for the comments...
           respond_to do |format|
             format.html {redirect_to new_restaurant_comment_path(@new_restaurant)} #go to that restaurant's comments page
             format.js { }
