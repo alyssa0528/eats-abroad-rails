@@ -1,3 +1,3 @@
-let commentFormHtml = "<h1>test</h1>"
-
-$('#new_restaurant').after(commentFormHtml)
+let commentFormHtml = "<h2>Enter a comment for <%= @new_restaurant.name %>:</h2><form action='/restaurants/<%= @new_restaurant.id %>/comments' method='post' accept-charset='UTF-8'><label>Your thoughts:</label></form><input type='text' name='comment[content]' id='comment_content'><input type='submit' name='commit' value='Add Comment' data-disable-with='Add Comment'>"
+//debugger
+$('#body-container').after(commentFormHtml)
