@@ -4,16 +4,22 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new
     @restaurant = Restaurant.find(params[:restaurant_id])
+    @comments = Comment.where(restaurant_id: params[:restaurant_id])
   end
 
   def create
     @comment = Comment.new
     @restaurant = Restaurant.find(params[:restaurant_id])
-
     @comment = current_user.comments.build(comments_params)
     @comment.restaurant_id = params[:restaurant_id]
+
     if @comment.save #if it can save to DB successfully
-      redirect_to restaurant_path(@comment.restaurant)
+      render 'comments/show', :layout => false
+      # respond_to do |format|
+        # format.html {redirect_to restaurant_path(@comment.restaurant)} #go to that restaurant's comments page
+        # format.js { render json: @comment.restaurant }
+      # end
+      #redirect_to restaurant_path(@comment.restaurant)
     else #if there are errors, render new form
       render :new
     end

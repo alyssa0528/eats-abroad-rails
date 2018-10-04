@@ -20,6 +20,28 @@ const bindCommentClickListeners = function() {
         $('#comment_list').after(newComments)
       })
   })
+
+//for comment form submission
+  $('#comment_form').on('submit', function(e) {
+    e.preventDefault();
+    //debugger
+    //debugger
+    //console.log($(this)) //'this' equals comment form
+    let action = $(this).attr('action') // "restaurants/:id/comments"
+    let method = $(this).attr('method') // "post"
+    let commentContent = $(this).find('#comment_content').val() // the comment
+    let data = $(this).serializeArray() //array of utf8, auth token, and comment itself
+    console.log(data)
+    $.ajax({
+       method: method,
+       url: action,
+       data: data,
+       success: function(response) {
+         $('#comment_list').append(response)
+       }
+     })
+     //console.log(newComment)
+  })
 }
 
 function Comment(comment) {

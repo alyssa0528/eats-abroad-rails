@@ -1,6 +1,14 @@
 <h1>Add a comment for <%= @restaurant.name %></h1>
-<%= form_for :comment, :url => url_for(:controller => 'comments', :action => 'create'), method: :post do |f| %>
+<h3>Existing comments:</h3>
+<div class="current_comments">
+  <ul id="comment_list">
+  <% @comments.each do |c| %>
+    <li><%= c.content %> - <%= c.chef.name %></li>
+  <% end %>
+</ul>
+</div>
+<%= form_for :comment, :url => url_for(:controller => 'comments', :action => 'create'), :html => {:id => "comment_form"}, method: :post do |f| %>
   <%= f.label :content, "Thoughts about this restaurant:" %>
   <%= f.text_field :content, placeholder: @comment.errors[:content] ? @comment.errors[:content][0] : '' %>
-  <%= f.submit "Add comment" %>
+  <%= f.submit "Add comment", :id => "submit_comment" %>
 <% end %>

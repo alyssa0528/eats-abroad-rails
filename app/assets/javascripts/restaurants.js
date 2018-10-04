@@ -35,43 +35,6 @@ const bindClickListeners = function() {
         $('#body-container').append(restaurantHtml)
       })
     })
-  //for BRAND NEW restaurant form
-  $('#new_restaurant').on('submit', function(e) { //#new-restaurant is form id
-    e.preventDefault();
-    $('#body-container').html('')
-    //get form input values...
-    //console.log($(this))
-    let action = $(this).attr('action')
-    let method = $(this).attr('method')
-    let restaurantName = $(this).find('#restaurant_name').val()
-    let restaurantCuisine = $(this).find('#restaurant_cuisine').val()
-    let restaurantCityId = $(this).find('#restaurant_city_id').val()
-    let data = $(this).serializeArray(); //the method gathers all inputs and values
-    //console.log(data)
-
-    $.ajax({
-      method: method,
-      url: action,
-      data: data,
-      dataType: 'script' //makes response format JS (not HTML)
-    })
-    //post the data, then show the comment form
-    //post the comment, and then take user to the restaurant's show page
-    //let newRestaurant = new Restaurant(data)
-    //console.log($(data))
-    //let restaurantHtml = newRestaurant.showCommentForm()
-    //('#body-container').append(restaurantHtml)
-  })
-
-    //let $newRestaurantName = $('input#restaurant_name').val()
-    //let newRestaurantCuisine = $('input#restaurant_cuisine').val()
-    //let newRestaurantCityId = $('select#restaurant_city_id').val()
-    //let $formValues = $('#new_restaurant :input')
-    //console.log($('input#restaurant_name').val())
-    //POST REQUEST TO /RESTAURANTS
-    //$('#body-container').html('')
-    //$('#body-container').append(`<h1>Add a comment for ${$newRestaurantName}:</h1>`)
-
   //for EXISTING RESTAURANT form (the restaurant drop-down)
   $('#add_existing').on('submit', function(e) { //#add_existing is the ID for the form
     e.preventDefault();
@@ -91,6 +54,7 @@ const bindClickListeners = function() {
   })
 }
 
+//constructor function
 function Restaurant(restaurant) { //reification (turning raw data and turning it into a JS object)
   this.id = restaurant.id
   this.name = restaurant.name
@@ -100,6 +64,7 @@ function Restaurant(restaurant) { //reification (turning raw data and turning it
   this.chefs = restaurant.chefs
 }
 
+//to create Restaurant index page format
 Restaurant.prototype.formatIndex = function() {
   let restaurantHtml = `
     <a href="/restaurants/${this.id}" class="show-link" data-id="${this.id}"><h1>${this.name}</h1></a>
@@ -108,6 +73,7 @@ Restaurant.prototype.formatIndex = function() {
   return restaurantHtml
 }
 
+//to create Restaurant show page format
 Restaurant.prototype.formatShow = function() {
   let restaurantHtml = `
     <h1>${this.name}</h1>
@@ -129,6 +95,7 @@ Restaurant.prototype.formatShow = function() {
   return restaurantHtml
 }
 
+//to show Add Comment form after adding a restaurant
 Restaurant.prototype.showCommentForm = function() {
   let commentFormHtml = `
   <h2>Enter a comment for ${this.name}:</h2>
