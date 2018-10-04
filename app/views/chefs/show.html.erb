@@ -3,7 +3,7 @@
 <p>My Restaurants: <%= @chef.employer %></p>
 <p>My Recommendations: </p>
 <ul>
-  <% @chef.restaurants.each do |restaurant| %>
+  <% @chef.restaurants.uniq.each do |restaurant| %>
     <%= link_to restaurant.name, restaurant_path(restaurant) %><br>
   <% end %>
 </ul>
