@@ -36,22 +36,22 @@ const bindClickListeners = function() {
       })
     })
   //for EXISTING RESTAURANT form (the restaurant drop-down)
-  $('#add_existing').on('submit', function(e) { //#add_existing is the ID for the form
-    e.preventDefault();
-    //console.log($(this)) //'this' is the form itself
-    let action = $(this).attr('action')
-    let method = $(this).attr('method')
-    let data = $(this).serializeArray()
-    //console.log(data)
-    $.ajax({
-      method: method,
-      url: action,
-      data: data,
-      dataType: 'script'
-    })
-    //post the data, then show the comment form
-    //post the comment, and then take user to the restaurant's show page
-  })
+  // $('#add_existing').on('submit', function(e) { //#add_existing is the ID for the form
+  //   e.preventDefault();
+  //   //console.log($(this)) //'this' is the form itself
+  //   let action = $(this).attr('action')
+  //   let method = $(this).attr('method')
+  //   let data = $(this).serializeArray()
+  //   //console.log(data)
+  //   $.ajax({
+  //     method: method,
+  //     url: action,
+  //     data: data,
+  //     dataType: 'script'
+  //   })
+  //   //post the data, then show the comment form
+  //   //post the comment, and then take user to the restaurant's show page
+  // })
 }
 
 //constructor function
