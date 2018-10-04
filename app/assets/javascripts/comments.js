@@ -24,9 +24,6 @@ const bindCommentClickListeners = function() {
 //for comment form submission
   $('#comment_form').on('submit', function(e) {
     e.preventDefault();
-    //debugger
-    //debugger
-    //console.log($(this)) //'this' equals comment form
     let action = $(this).attr('action') // "restaurants/:id/comments"
     let method = $(this).attr('method') // "post"
     let commentContent = $(this).find('#comment_content').val() // the comment
@@ -38,9 +35,9 @@ const bindCommentClickListeners = function() {
        data: data,
        success: function(response) {
          $('#comment_list').append(response)
+         $('#comment_content').val("")
        }
      })
-     //console.log(newComment)
   })
 }
 
