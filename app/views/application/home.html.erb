@@ -1,6 +1,6 @@
 <% if session[:email] %>
   <h1>Welcome, <%= @chef.name %>!</h1>
-  <p><%= link_to "View my recommended restaurants", chef_restaurants_path(@chef) %></p>
+  <p><%= link_to "View my recommended restaurants", chef_restaurants_path(@chef), :class => "restaurant_index" %></p>
   <p><%= link_to "View my profile", chef_path(@chef) %></p>
   <p><%= link_to "Log Out", signout_path, method: :delete %></p>
 <% else %>
