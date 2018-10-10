@@ -3,7 +3,7 @@
 <div class="current_comments">
   <ul id="comment_list">
   <% @comments.each do |c| %>
-    <li><%= c.content %> - <%= c.chef.name %></li>
+    <li><%= c.content %> - <%= link_to c.chef.name, chef_path(c.chef.id) %></li>
   <% end %>
 </ul>
 </div>
