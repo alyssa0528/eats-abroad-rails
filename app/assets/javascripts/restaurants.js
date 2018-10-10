@@ -19,6 +19,21 @@ const bindClickListeners = function() {
         })
       })
     })
+    //for INDEX restaurants - chef-specific
+    $('.restaurant_index').on('click', function(e) {
+      e.preventDefault();
+      let href = this.pathname
+      fetch(`${href}.json`)
+        .then(response => response.json())
+        .then(restaurants => {
+          $('#body-container').html('')
+          restaurants.forEach(function(restaurant) {
+            let newRestaurant = new Restaurant(restaurant)
+            let restaurantHtml = newRestaurant.formatIndex()
+            $('#body-container').append(restaurantHtml)
+          })
+        })
+      })
     //for SHOW restaurant
   $(document).on('click', '.show-link', function(e) {
     e.preventDefault();
