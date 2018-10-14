@@ -6,8 +6,7 @@ const bindClickListeners = function() {
   //for INDEX restaurants
   $('#all_restaurants').on('click', function(e) {
     e.preventDefault();
-    //history.pushState(null, null, "restaurants") //updates URL, but is incorrect when link is clicked
-    //from other pages...
+    //history.pushState(null, null, "restaurants") 
     fetch('/restaurants.json')
       .then(response => response.json())
       .then(restaurants => {
@@ -45,28 +44,10 @@ const bindClickListeners = function() {
       .then(restaurant => {
         // append restaurant JSON object to the #body-container div
         let newRestaurant = new Restaurant(restaurant);
-        //console.log(restaurant)
         let restaurantHtml = newRestaurant.formatShow();
         $('#body-container').append(restaurantHtml)
       })
     })
-  //for EXISTING RESTAURANT form (the restaurant drop-down)
-  // $('#add_existing').on('submit', function(e) { //#add_existing is the ID for the form
-  //   e.preventDefault();
-  //   //console.log($(this)) //'this' is the form itself
-  //   let action = $(this).attr('action')
-  //   let method = $(this).attr('method')
-  //   let data = $(this).serializeArray()
-  //   //console.log(data)
-  //   $.ajax({
-  //     method: method,
-  //     url: action,
-  //     data: data,
-  //     dataType: 'script'
-  //   })
-  //   //post the data, then show the comment form
-  //   //post the comment, and then take user to the restaurant's show page
-  // })
 }
 
 //constructor function
