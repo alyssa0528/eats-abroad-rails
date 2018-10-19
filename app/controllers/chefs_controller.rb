@@ -4,12 +4,12 @@ class ChefsController < ApplicationController
   #GET /chefs/new (show signup form)
   def new
     @chef = Chef.new
+    render 'chefs/new', :layout => false
   end
 
   #POST /chefs (create new chef user)
   def create
     @chef = Chef.new(chef_params)
-    #binding.pry
     if @chef.save
       session[:email] = @chef.email
       redirect_to root_path
