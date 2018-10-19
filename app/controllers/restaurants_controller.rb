@@ -6,17 +6,9 @@ class RestaurantsController < ApplicationController
     if params[:type]
       #find restaurants with this cuisine type
       @restaurants = Restaurant.by_cuisine(params[:type])
-      respond_to do |f|
-        f.html
-        f.json {render json: @restaurants}
-      end
     elsif params[:city_id]
       @city = City.find(params[:city_id])
       @restaurants = @city.restaurants
-      respond_to do |f|
-        f.html
-        f.json {render json: @restaurants}
-      end
     elsif params[:chef_id]
       @chef = Chef.find(params[:chef_id])
       @restaurants = @chef.restaurants
