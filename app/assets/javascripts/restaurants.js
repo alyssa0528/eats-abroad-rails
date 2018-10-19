@@ -2,11 +2,11 @@ $(() => {
   bindClickListeners()
 })
 
-const bindClickListeners = function() {
+const bindClickListeners = () => {
   //for INDEX restaurants
-  $('#all_restaurants').on('click', function(e) {
+  $('#all_restaurants').on('click', e => {
     e.preventDefault();
-    //history.pushState(null, null, "restaurants") 
+    //history.pushState(null, null, "restaurants")
     fetch('/restaurants.json')
       .then(response => response.json())
       .then(restaurants => {

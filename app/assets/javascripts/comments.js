@@ -2,7 +2,7 @@ $(() => {
   bindCommentClickListeners()
 })
 
-const bindCommentClickListeners = function() {
+const bindCommentClickListeners = () => {
   //for "see recommendations" link
   $(document).on('click', '#see-recs', function(e) {
     e.preventDefault()
