@@ -6,11 +6,14 @@ const bindClickListeners = () => {
   //for INDEX restaurants
   $('#all_restaurants').on('click', e => {
     e.preventDefault();
+    let alphabetizeLink = `
+      <a href="#" id="alphabetize">Alphabetize</a>
+    `
     //history.pushState(null, null, "restaurants")
     fetch('/restaurants.json')
       .then(response => response.json())
       .then(restaurants => {
-        $('#body-container').html('')
+        $('#body-container').html('').append(alphabetizeLink)
         restaurants.forEach(function(restaurant) {
           let newRestaurant = new Restaurant(restaurant)
           let restaurantHtml = newRestaurant.formatIndex()
@@ -33,6 +36,30 @@ const bindClickListeners = () => {
           })
         })
       })
+//to alphabetize
+  $(document).on('click', '#alphabetize', function(e) {
+    e.preventDefault();
+    $('#body-container').html('')
+    fetch('/restaurants.json')
+      .then(response => response.json())
+      .then(restaurants => {
+        restaurants.sort(function(a, b) {
+          var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+          var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+      })
+      restaurants.forEach(function(restaurant) {
+        let newRestaurant = new Restaurant(restaurant)
+        let restaurantHtml = newRestaurant.formatIndex()
+        $('#body-container').append(restaurantHtml)
+      })
+  })
+})
     //for SHOW restaurant
   $(document).on('click', '.show-link', function(e) {
     e.preventDefault();
@@ -92,14 +119,14 @@ Restaurant.prototype.formatShow = function() {
 }
 
 //to show Add Comment form after adding a restaurant
-Restaurant.prototype.showCommentForm = function() {
-  let commentFormHtml = `
-  <h2>Enter a comment for ${this.name}:</h2>
-  <form action="/restaurants/${this.id}/comments" method="post" accept-charset="UTF-8">
-    <label>Your thoughts:</label>
-    <input type="text" name="comment[content]" id="comment_content">
-    <input type="submit" name="commit" value="Add Comment" data-disable-with="Add Comment">
-  </form>
-  `
-  return commentFormHtml
-}
+// Restaurant.prototype.showCommentForm = function() {
+//   let commentFormHtml = `
+//   <h2>Enter a comment for ${this.name}:</h2>
+//   <form action="/restaurants/${this.id}/comments" method="post" accept-charset="UTF-8">
+//     <label>Your thoughts:</label>
+//     <input type="text" name="comment[content]" id="comment_content">
+//     <input type="submit" name="commit" value="Add Comment" data-disable-with="Add Comment">
+//   </form>
+//   `
+//   return commentFormHtml
+// }
