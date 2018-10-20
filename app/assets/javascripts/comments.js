@@ -34,6 +34,7 @@ const bindCommentClickListeners = () => {
        url: action,
        data: data,
        success: function(response) {
+         console.log(response)
          $('#comment_list').append(response)
          $('#comment_content').val("")
        }
@@ -41,17 +42,34 @@ const bindCommentClickListeners = () => {
   })
 }
 
-function Comment(comment) {
-  this.id = comment.id
-  this.content = comment.content
-  this.chef = comment.chef
-  this.restaurant = comment.restaurant
-}
+// function Comment(comment) {
+//   this.id = comment.id
+//   this.content = comment.content
+//   this.chef = comment.chef
+//   this.restaurant = comment.restaurant
+// }
+//
+// Comment.prototype.revealComments = function() {
+//   let commentHtml = `
+//       <li>
+//       ${this.content} — <a href="/chefs/${this.chef.id}">${this.chef.name}</a></li>
+//   `
+//   return commentHtml
+// }
+//class syntax
 
-Comment.prototype.revealComments = function() {
-  let commentHtml = `
-      <li>
-      ${this.content} — <a href="/chefs/${this.chef.id}">${this.chef.name}</a></li>
-  `
-  return commentHtml
+class Comment {
+  constructor(comment) {
+    this.id = comment.id
+    this.content = comment.content
+    this.chef = comment.chef
+    this.restaurant = comment.restaurant
+  }
+  revealComments() {
+    let commentHtml = `
+        <li>
+        ${this.content} — <a href="/chefs/${this.chef.id}">${this.chef.name}</a></li>
+    `
+    return commentHtml
+  }
 }
