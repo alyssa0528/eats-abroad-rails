@@ -20,4 +20,43 @@
 
 .navigation {
   background-color: #F58632;
+  height: 125px;
+  text-align: center;
+}
+
+.nav-links {
+  display: inline-block;
+}
+
+.logo {
+}
+
+.center {
+  text-align: center;
+}
+
+label {
+	margin: 0px 0px 15px 0px;
+}
+
+label.required:after {
+  content: "*";
+  color: red;
+}
+
+.input-field {
+  width: 15%;
+}
+
+.button {
+  border: none;
+	padding: 8px 15px 8px 15px;
+	background: #FF8500;
+	color: #fff;
+	box-shadow: 1px 1px 4px #DADADA;
+	-moz-box-shadow: 1px 1px 4px #DADADA;
+	-webkit-box-shadow: 1px 1px 4px #DADADA;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
 }
