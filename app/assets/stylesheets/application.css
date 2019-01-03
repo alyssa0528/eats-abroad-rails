@@ -32,9 +32,6 @@
   text-decoration: none;
 }
 
-.logo {
-}
-
 .center {
   text-align: center;
 }
@@ -63,4 +60,10 @@ label.required:after {
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
+}
+
+.restaurant-item {
+  border: 0.5px solid;
+  border-color: #F0E7E7;
+  margin: 5px 0 5px 0;
 }

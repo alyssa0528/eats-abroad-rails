@@ -7,7 +7,7 @@ const bindClickListeners = () => {
   $('#all_restaurants').on('click', e => {
     e.preventDefault();
     let alphabetizeLink = `
-      <a href="#" id="alphabetize">Alphabetize</a>
+      <a href="#" id="alphabetize">Alphabetize List</a>
     `
     //history.pushState(null, null, "restaurants")
     fetch('/restaurants.json')
@@ -90,8 +90,10 @@ function Restaurant(restaurant) { //reification (turning raw data and turning it
 //to create Restaurant index page format
 Restaurant.prototype.formatIndex = function() {
   let restaurantHtml = `
+  <div class="center restaurant-item">
     <a href="/restaurants/${this.id}" class="show-link" data-id="${this.id}"><h1>${this.name}</h1></a>
     <p>${this.cuisine} | ${this.city.name}</p>
+    </div>
   `
   return restaurantHtml
 }
