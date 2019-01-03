@@ -1,9 +1,14 @@
+<%= stylesheet_link_tag    'application' %>
+
 <% if session[:email] %>
   <h1>Welcome, <%= @chef.name %>!</h1>
   <p><%= link_to "View my recommended restaurants", chef_restaurants_path(@chef), :class => "restaurant_index" %></p>
   <p><%= link_to "View my profile", chef_path(@chef) %></p>
-  <p><%= link_to "Log Out", signout_path, method: :delete %></p>
+  <!-- <p><%= link_to "Log Out", signout_path, method: :delete %></p> -->
 <% else %>
-  <h1>Welcome to Eats Abroad!</h1>
-  <p>Please <%= link_to "sign in", signin_path %> or <%= link_to "create an account", new_chef_path %></p>
+  <div class="center">
+    <img class="logo" src="/Eats Abroad Logo-v-5A Mar.jpg" width="165" height="125" alt="Eats Abroad logo">
+    <h1>Welcome!</h1>
+    <p>Please <%= link_to "sign in", signin_path %> or <%= link_to "create an account", new_chef_path %></p>
+  </div>
 <% end %>
