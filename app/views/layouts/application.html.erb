@@ -10,15 +10,18 @@
   </head>
 
   <body>
-    <div class="navigation">
+    <div class="center">
       <img class="logo" src="/Eats Abroad Logo-v-5A Mar.jpg" width="165" height="125" alt="Eats Abroad logo">
-      <ul class="nav-links">
-        <a href="/">Home</a> |
-        <a href="/chefs/<%=current_user[:id]%>" id="profile">My Profile</a> |
-        <a href="/restaurants" id="all_restaurants">Browse Restaurants</a> |
-        <a href="/restaurants/new">Add a Restaurant</a> |
-        <%= link_to "Log Out", signout_path, method: :delete %>
-      </ul>
+      <div class="navigation">
+
+        <ul class="nav-links">
+          <a href="/" class="button">Home</a> 
+          <a href="/chefs/<%=current_user[:id]%>" id="profile" class="button">My Profile</a>
+          <a href="/restaurants" id="all_restaurants" class="button">Browse Restaurants</a>
+          <a href="/restaurants/new" class="button">Add a Restaurant</a>
+          <%= link_to "Log Out", signout_path, method: :delete, :class => "button" %>
+        </ul>
+      </div>
     </div>
     <div id="body-container">
       <%= yield %>

@@ -14,18 +14,22 @@
  *= require_self
  */
 
+* {
+  font-family: Calibri, sans-serif;
+}
+
 .field_with_errors input {
   border: red 1px solid;
 }
 
-.navigation {
+/* .navigation {
   background-color: #F58632;
-  height: 125px;
   text-align: center;
-}
+} */
 
-.nav-links {
+.nav-links a {
   display: inline-block;
+  text-decoration: none;
 }
 
 .logo {
