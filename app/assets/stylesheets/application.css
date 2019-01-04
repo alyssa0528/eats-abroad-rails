@@ -62,7 +62,7 @@ label.required:after {
 	-moz-border-radius: 3px;
 }
 
-.restaurant-item {
+.restaurant-item, .login {
   border: 0.5px solid;
   border-color: #F0E7E7;
   margin: 5px 0 5px 0;

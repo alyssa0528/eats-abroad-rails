@@ -2,14 +2,16 @@
 
 <div class="center">
   <img class="logo" src="/Eats Abroad Logo-v-5A Mar.jpg" width="165" height="125" alt="Eats Abroad logo">
-  <h1>Please log in with your account</h1>
-  <%= form_tag signin_path do %>
-    <label>Email:</label>
-    <%= text_field_tag :email %><br>
-    <label>Password:</label>
-    <%= password_field_tag :password %><br>
-    <%= submit_tag "Log In" %>
-  <% end %>
+  <div class="login">
+    <h1>Please log in with your account</h1>
+    <%= form_tag signin_path do %>
+      <label>Email:</label>
+      <%= text_field_tag :email %><br>
+      <label>Password:</label>
+      <%= password_field_tag :password %><br>
+      <%= submit_tag "Log In" %>
+    <% end %>
+  </div>
 
   <h1>Or <%= link_to "log in via Facebook", '/auth/facebook' %></h1>
 </div>
