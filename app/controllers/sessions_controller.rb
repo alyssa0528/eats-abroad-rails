@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
         session[:email] = @chef.email
         redirect_to root_path
       else
-        render :new
+        render 'new', :layout => false
       end
     elsif auth[:info][:email]
       @chef = Chef.find_or_create_by(email: auth[:info][:email]) do |c|

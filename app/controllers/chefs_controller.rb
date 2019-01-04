@@ -14,7 +14,7 @@ class ChefsController < ApplicationController
       session[:email] = @chef.email
       redirect_to root_path
     else
-      render :new
+      render :new, :layout => false
     end
 
   end
