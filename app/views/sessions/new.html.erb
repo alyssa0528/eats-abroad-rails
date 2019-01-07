@@ -3,7 +3,7 @@
 <div class="center">
   <img class="logo" src="/Eats Abroad Logo-v-5A Mar.jpg" width="165" height="125" alt="Eats Abroad logo">
   <div class="login">
-    <h1>Please log in with your account</h1>
+    <h2>Please log in with your account</h2>
     <%= form_tag signin_path do %>
       <label>Email:</label>
       <%= text_field_tag :email %><br>
@@ -13,5 +13,5 @@
     <% end %>
   </div>
 
-  <h1>Or <%= link_to "log in via Facebook", '/auth/facebook' %></h1>
+  <h2>Alternatively, <%= link_to "log in via Facebook", '/auth/facebook' %></h2>
 </div>
