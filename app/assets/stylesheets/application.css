@@ -52,7 +52,8 @@ label.required:after {
 .button {
   border: none;
 	padding: 8px 15px 8px 15px;
-	background: #FF8500;
+  margin-top: 8px;
+	background: #F58632;
 	color: #fff;
 	box-shadow: 1px 1px 4px #DADADA;
 	-moz-box-shadow: 1px 1px 4px #DADADA;
@@ -62,8 +63,16 @@ label.required:after {
 	-moz-border-radius: 3px;
 }
 
-.restaurant-item, .login {
+.restaurant-item {
   border: 0.5px solid;
   border-color: #F0E7E7;
   margin: 5px 0 5px 0;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
 }
