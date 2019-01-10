@@ -13,7 +13,7 @@ class Restaurant < ApplicationRecord
   end
 
   def capitalize_cuisine
-    self.cuisine = self.cuisine.capitalize
+    self.cuisine = self.cuisine.titleize
   end
 
 end
