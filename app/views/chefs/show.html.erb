@@ -1,13 +1,21 @@
-<h1><%= @chef.name %>'s Profile</h1>
-<p>Hometown: <%= @chef.hometown %></p>
-<p>My Restaurants: <%= @chef.employer %></p>
-<p>My Recommendations: </p>
-<ul>
-  <% @chef.restaurants.uniq.each do |restaurant| %>
-    <%= link_to restaurant.name, restaurant_path(restaurant) %><br>
-  <% end %>
-</ul>
-<!-- edit profile if you're the chef -->
-<% if params[:id] == current_user.id.to_s %>
-  <%= link_to "Edit my profile", edit_chef_path(@chef) %>
-<% end %>
+<%= stylesheet_link_tag    'application' %>
+
+<div class="profile">
+  <div class="profile-heading">
+    <h1><%= @chef.name %>'s Profile</h1>
+  </div>
+  <div class="profile-info">
+    <p><strong>Hometown:</strong> <%= @chef.hometown %></p>
+    <p><strong>My Restaurants:</strong> <%= @chef.employer %></p>
+    <p><strong>My Recommendations:</strong> </p>
+    <ul>
+      <% @chef.restaurants.uniq.each do |restaurant| %>
+        <li><%= link_to restaurant.name, restaurant_path(restaurant) %><br></li>
+      <% end %>
+    </ul>
+    <!-- edit profile if you're the chef -->
+    <% if params[:id] == current_user.id.to_s %>
+      <%= link_to "Edit my profile", edit_chef_path(@chef) %>
+    <% end %>
+  </div>
+  </div>

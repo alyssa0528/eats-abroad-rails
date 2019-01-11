@@ -7,13 +7,13 @@ const bindClickListeners = () => {
   $('#all_restaurants').on('click', e => {
     e.preventDefault();
     let alphabetizeLink = `
-      <a href="#" id="alphabetize">Alphabetize List</a>
+      <center><a href="#" id="alphabetize">Alphabetize List</a></center>
     `
     //history.pushState(null, null, "restaurants")
     fetch('/restaurants.json')
       .then(response => response.json())
       .then(restaurants => {
-        $('#body-container').html('').append(alphabetizeLink)
+        $('#body-container').html("<h2><center>Recommended Restaurants</center></h2>").append(alphabetizeLink)
         restaurants.forEach(function(restaurant) {
           let newRestaurant = new Restaurant(restaurant)
           let restaurantHtml = newRestaurant.formatIndex()
@@ -28,7 +28,7 @@ const bindClickListeners = () => {
       fetch(`${href}.json`)
         .then(response => response.json())
         .then(restaurants => {
-          $('#body-container').html('')
+          $('#body-container').html("<h2><center>My Recommended Restaurants</center></h2>")
           restaurants.forEach(function(restaurant) {
             let newRestaurant = new Restaurant(restaurant)
             let restaurantHtml = newRestaurant.formatIndex()
@@ -39,7 +39,7 @@ const bindClickListeners = () => {
 //to alphabetize
   $(document).on('click', '#alphabetize', function(e) {
     e.preventDefault();
-    $('#body-container').html('')
+    $('#body-container').html("<h2><center>Recommended Restaurants</center></h2>")
     fetch('/restaurants.json')
       .then(response => response.json())
       .then(restaurants => {
@@ -91,9 +91,13 @@ function Restaurant(restaurant) { //reification (turning raw data and turning it
 Restaurant.prototype.formatIndex = function() {
   let restaurantHtml = `
   <div class="center restaurant-item">
-    <a href="/restaurants/${this.id}" class="show-link" data-id="${this.id}"><h1>${this.name}</h1></a>
-    <p>${this.cuisine} | ${this.city.name}</p>
+    <div class="restaurant-name">
+      <a href="/restaurants/${this.id}" class="show-link" data-id="${this.id}"><h1>${this.name}</h1></a>
     </div>
+    <div class="restaurant-info">
+      <p>${this.cuisine} | ${this.city.name}</p>
+    </div>
+  </div>
   `
   return restaurantHtml
 }
@@ -101,7 +105,11 @@ Restaurant.prototype.formatIndex = function() {
 //to create Restaurant show page format
 Restaurant.prototype.formatShow = function() {
   let restaurantHtml = `
+    <div class="profile">
+    <div class="profile-heading">
     <h1>${this.name}</h1>
+    </div>
+    <div class="profile-info">
     <p><strong>Cuisine:</strong> ${this.cuisine}</p>
     <p><strong>City:</strong> ${this.city.name}</p>
     <p><strong>Recommended by:</strong></p>
@@ -116,6 +124,8 @@ Restaurant.prototype.formatShow = function() {
     </ul>
 
     <a href="/restaurants/${this.id}/comments" id="see-recs">See Recommendations</a>
+    </div>
+    </div>
     `
   return restaurantHtml
 }

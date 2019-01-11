@@ -14,7 +14,9 @@ const bindCommentClickListeners = () => {
         let newComments = data.map(comment => new Comment(comment).revealComments())
         //console.log(newComments) //returns array of 3 Comment objects
         let commentHeadingHtml = `
+        <div class="profile-info">
           <p id="chef_comment_heading"><strong>Chefs' Comments:</strong></p><ul id="comment_list"></ul>
+          </div>
         `
         $('#see-recs').replaceWith(commentHeadingHtml)
         $('#comment_list').after(newComments)

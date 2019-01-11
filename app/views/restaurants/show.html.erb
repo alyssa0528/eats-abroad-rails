@@ -1,10 +1,17 @@
-<h1><%= @restaurant.name %></h1>
+<%= stylesheet_link_tag    'application' %>
 
-<h3>Cuisine: <%= @restaurant.cuisine %></h3>
+<div class="profile">
+  <div class="profile-heading">
+    <h1><%= @restaurant.name %></h1>
+  </div>
+  <div class="profile-info">
+    <h3>Cuisine: <%= @restaurant.cuisine %></h3>
 
-<h3>Recommendations:</h3>
-<ul>
-  <% @restaurant.comments.each do |c| %>
-    <li><%= c.content %> - <%= link_to c.chef.name, chef_path(c.chef) %></li>
-  <% end %>
-</ul>
+    <h3>Recommendations:</h3>
+    <ul>
+      <% @restaurant.comments.each do |c| %>
+        <li><%= c.content %> - <%= link_to c.chef.name, chef_path(c.chef) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
