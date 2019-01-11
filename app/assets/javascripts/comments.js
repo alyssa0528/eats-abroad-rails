@@ -30,14 +30,18 @@ const bindCommentClickListeners = () => {
     let method = $(this).attr('method') // "post"
     let commentContent = $(this).find('#comment_content').val() // the comment
     let data = $(this).serializeArray() //array of utf8, auth token, and comment itself
-    console.log(data)
+    // console.log(data)
     $.ajax({
        method: method,
        url: action,
        data: data,
        success: function(response) {
-         console.log(response)
-         $('#comment_list').append(response)
+         // console.log(response)
+         if ($('#comment_list li').length >= 1) {
+           $('#comment_list').append(response)
+         } else {
+           $('#comment_list').replaceWith(response)
+         }
          $('#comment_content').val("")
        }
      })
