@@ -16,7 +16,7 @@ const bindCommentClickListeners = () => {
         let commentHeadingHtml = `
         <div class="profile-info">
           <p id="chef_comment_heading"><strong>Chefs' Comments:</strong></p><ul id="comment_list"></ul>
-          </div>
+        </div>
         `
         $('#see-recs').replaceWith(commentHeadingHtml)
         $('#comment_list').after(newComments)
@@ -30,20 +30,28 @@ const bindCommentClickListeners = () => {
     let method = $(this).attr('method') // "post"
     let commentContent = $(this).find('#comment_content').val() // the comment
     let data = $(this).serializeArray() //array of utf8, auth token, and comment itself
-    // console.log(data)
+    console.log(data)
     $.ajax({
        method: method,
        url: action,
        data: data,
        success: function(response) {
-         // console.log(response)
-         if ($('#comment_list li').length >= 1) {
-           $('#comment_list').append(response)
-         } else {
-           $('#comment_list').replaceWith(response)
-         }
-         $('#comment_content').val("")
-       }
+         debugger
+         if ($(response).find('div.field_with_errors').length === 0) {
+           if ($('#comment_list li').length > 0) {
+             $('#comment_list').append(response) //append the new comment to existing list of comments
+           } else {
+             $('#comment_list').replaceWith(response) // replace "None!" with the new, valid comment
+           }
+           $('#comment_form').empty()
+         } else { //if there are errors
+            let inputErrorHtml = `
+            <div class="field_with_errors"><input placeholder="is too short (minimum is 10 characters)" type="text" value="test" name="comment[content]" id="comment_content" /></div>
+            `
+            $('#comment_content').replaceWith(inputErrorHtml)
+          }
+        $('#comment_content').val("") //reset input to be blank
+     }
      })
   })
 }
@@ -62,6 +70,7 @@ const bindCommentClickListeners = () => {
 //   `
 //   return commentHtml
 // }
+
 //class syntax
 
 class Comment {

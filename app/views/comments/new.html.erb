@@ -1,20 +1,28 @@
 <%= stylesheet_link_tag    'application' %>
-
-<h1>Add a comment for <%= @restaurant.name %></h1>
-<h3>Existing comments:</h3>
-<div class="current_comments">
-    <ul id="comment_list">
-    <% if @comments.length != 0 %>
-      <% @comments.each do |c| %>
-        <li><%= c.content %> - <%= link_to c.chef.name, chef_path(c.chef.id) %></li>
+<div class="comment-box">
+  <h1>Add a comment for <%= @restaurant.name %></h1>
+  <h3>Existing comments:</h3>
+  <div class="current_comments">
+      <ul id="comment_list">
+      <% if @comments %>
+        <% @comments.each do |c| %>
+          <li><%= c.content %> - <%= link_to c.chef.name, chef_path(c.chef.id) %></li>
+        <% end %>
+      <% else %>
+        <p>None!</p>
       <% end %>
-    <% else %>
-      <p>None!</p>
-    <% end %> 
-    </ul>
+      </ul>
+  </div>
+  <%= form_for @comment, :url => url_for(:controller => 'comments', :action => 'create'), :html => {:id => "comment_form"} do |f| %>
+    <% if @comment.errors.any? %>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    <% end %>
+    <%= f.label :content, "Thoughts about this restaurant:" %>
+    <%= f.text_field :content, placeholder: @comment.errors[:content] ? @comment.errors[:content][0] : '' %>
+    <%= f.submit "Add Comment", :id => "submit_comment", :class => "button", data: { disable_with: false } %>
+  <% end %>
 </div>
-<%= form_for :comment, :url => url_for(:controller => 'comments', :action => 'create'), :html => {:id => "comment_form"}, method: :post do |f| %>
-  <%= f.label :content, "Thoughts about this restaurant:" %>
-  <%= f.text_field :content, placeholder: @comment.errors[:content] ? @comment.errors[:content][0] : '' %>
-  <%= f.submit "Add comment", :id => "submit_comment", :class => "button" %>
-<% end %>
+
+<!-- , method: :post -->
