@@ -15,11 +15,10 @@ const bindCommentClickListeners = () => {
         //console.log(newComments) //returns array of 3 Comment objects
         let commentHeadingHtml = `
         <div class="profile-info">
-          <p id="chef_comment_heading"><strong>Chefs' Comments:</strong></p><ul id="comment_list"></ul>
-        </div>
+          <p id="chef_comment_heading" class="center"><strong>Chefs' Comments:</strong></p><ul id="comment_list">
         `
         $('#see-recs').replaceWith(commentHeadingHtml)
-        $('#comment_list').after(newComments)
+        $('#comment_list').append(newComments)
       })
   })
 
@@ -82,8 +81,7 @@ class Comment {
   }
   revealComments() {
     let commentHtml = `
-        <li>
-        ${this.content} — <a href="/chefs/${this.chef.id}">${this.chef.name}</a></li>
+        <li>${this.content} — <a href="/chefs/${this.chef.id}">${this.chef.name}</a></li>
     `
     return commentHtml
   }

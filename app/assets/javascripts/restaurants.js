@@ -122,9 +122,10 @@ Restaurant.prototype.formatShow = function() {
       ).join('')
     }
     </ul>
-
-    <a href="/restaurants/${this.id}/comments" id="see-recs">See Recommendations</a>
     </div>
+    <br>
+    <a href="/restaurants/${this.id}/comments" id="see-recs">See Recommendations</a>
+
     </div>
     `
   return restaurantHtml
