@@ -67,6 +67,9 @@ class RestaurantsController < ApplicationController
         @restaurant = Restaurant.find_by(:name => params[:restaurant][:name]) #find the instance, assign to @restaurant
         redirect_to new_restaurant_comment_path(@restaurant) #go to new comment page
       else  #if it's a brand new restaurant not in the database
+        if params[:restaurant][:cuisine] == ""
+          params[:restaurant][:cuisine] = "Cuisine not specified"
+        end
         @new_restaurant = current_user.restaurants.build(restaurant_params)
         if @new_restaurant.save # .valid would simply check and not save, but then I don't have a restaurant ID for the comments...
           respond_to do |format|
@@ -95,6 +98,10 @@ private
 
   def require_login
     return head(:forbidden) unless session.include? :email
+  end
+
+  def add_default_cuisine
+    @restaurant.cuisine = "Cuisine not specified"
   end
 
 end
