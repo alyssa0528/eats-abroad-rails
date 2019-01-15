@@ -1,8 +1,8 @@
 <%= stylesheet_link_tag    'application' %>
 <div class="comment-box">
   <h1>Add a comment for <%= @restaurant.name %></h1>
-  <h3>Existing comments:</h3>
-  <div class="current_comments">
+  <div class="profile-info">
+    <h3>Existing comments:</h3>
       <ul id="comment_list">
       <% if @comments %>
         <% @comments.each do |c| %>
@@ -12,17 +12,11 @@
         <p>None!</p>
       <% end %>
       </ul>
-  </div>
+
   <%= form_for @comment, :url => url_for(:controller => 'comments', :action => 'create'), :html => {:id => "comment_form"} do |f| %>
-    <% if @comment.errors.any? %>
-      <% @comment.errors.full_messages.each do |msg| %>
-        <p><%= msg %></p>
-      <% end %>
-    <% end %>
-    <%= f.label :content, "Thoughts about this restaurant:" %>
-    <%= f.text_field :content, placeholder: @comment.errors[:content] ? @comment.errors[:content][0] : '' %>
+    <h3><%= f.label :content, "Thoughts about this restaurant:" %></h3>
+    <%= f.text_area :content, class: "comment-input", placeholder: @comment.errors[:content] ? @comment.errors[:content][0] : '' %>
     <%= f.submit "Add Comment", :id => "submit_comment", :class => "button", data: { disable_with: false } %>
   <% end %>
+    </div>
 </div>
-
-<!-- , method: :post -->
