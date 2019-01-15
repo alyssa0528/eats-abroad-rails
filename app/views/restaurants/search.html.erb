@@ -1,0 +1,6 @@
+<h2>Search by Cuisine</h2>
+<%= form_tag(restaurants_search_new_path method: :get) do %>
+  <label>Search</label>
+  <%= text_field_tag :search %>
+  <%= submit_tag "Search"%>
+<% end %>
