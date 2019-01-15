@@ -6,4 +6,7 @@
 </div>
   <%= form_for @chef, url: chefs_path, method: :post do |f| %>
     <%= render 'form', f: f %>
+    <div class="create-account">
+      <%= f.submit "Create Account", class: ["button"] %>
+    </div>
   <% end %>
