@@ -58,10 +58,6 @@
   border: red 1px solid;
 }
 
-label {
-	margin: 0px 0px 15px 0px;
-}
-
 label.required:after {
   content: "*";
   color: red;
@@ -72,14 +68,14 @@ label.required:after {
 }
 
 .form {
-  margin: 20px 0 20px 0;
+  margin: 0 0 -10px 0;
   width: 33%;
   margin: 0 auto;
-  padding: 0 0 0 20px;
   text-align: left;
 }
 
 .form label {
+  margin: 0px 0px 15px 0px;
   text-align: left;
   display: inline-block;
 }
@@ -94,9 +90,8 @@ label.required:after {
   text-align: center;
 }
 
-.login label {
-  padding: 30px 10px 30px 20px;
-  margin: 0px 0px 30px 0px;
+.login {
+  margin: -10px 0px 20px 0px;
 }
 
 /* CSS for restaurant lists */
@@ -131,12 +126,23 @@ label.required:after {
   max-width: 60%;
 }
 
-.profile-heading {
+/* .profile-heading {
   max-width: 60%;
   margin: auto;
-}
+} */
 
 .profile-info {
   display: inline-block;
   text-align: left;
+}
+
+/* CSS for comment form and views */
+.comment-box {
+  width: 33%;
+  margin: auto;
+}
+
+.comment-input {
+  width: 400px;
+  height: 40px;
 }

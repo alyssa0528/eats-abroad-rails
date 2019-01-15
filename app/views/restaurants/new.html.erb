@@ -11,6 +11,7 @@
 
   <div class="center column">
     <h2>Or add a new restaurant to your recommendations:</h2>
+    <div class="form">
     <%= form_for @restaurant do |f| %>
       <%= f.label :name, :class => "required" %>
       <%= f.text_field :name, placeholder: @restaurant.errors[:name] ? @restaurant.errors[:name][0] : '' %><br>
