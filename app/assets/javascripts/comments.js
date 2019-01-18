@@ -35,7 +35,6 @@ const bindCommentClickListeners = () => {
        url: action,
        data: data,
        success: function(response) {
-         debugger
          if ($(response).find('div.field_with_errors').length === 0) {
            if ($('#comment_list li').length > 0) {
              $('#comment_list').append(response) //append the new comment to existing list of comments
