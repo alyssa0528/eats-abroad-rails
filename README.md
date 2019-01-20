@@ -16,6 +16,6 @@ Clone the repo. From the terminal, navigate to the eats-abroad-rails folder. Run
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/alyssa0528/eats-abroad-rails. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
-##License
+## License
 
 Please refer to the MIT License documentation in the license.txt file for more information.
